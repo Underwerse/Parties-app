@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import fi.example.tiistai2501.databinding.FragmentSelectPartyBinding
 
@@ -20,8 +21,8 @@ class SelectPartyFragment : Fragment() {
 
         val bundle = Bundle()
 
-        val parliamentMembers = ParliamentMembersData.members
 
+        val parliamentMembers = ParliamentMembersData.members
         var partiesList = mutableListOf<String>()
         parliamentMembers.forEach {
             partiesList.add(it.party)
