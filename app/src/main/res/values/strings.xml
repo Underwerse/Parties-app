@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">teht7</string>
+    <string name="app_name">Tehtävä 8</string>
+    <string name="name">Parties info</string>
+    <string name="about">This is the test Android-app.
+\n\nHere it\'s been implemented a navigation.
+\n\nMoreover, here you can go through several Fragments.
+\nHere and after just a text-placeholder to demonstrate Scroll-view.
+\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+\neiusmod tempor incididunt ut labore et dolore magna aliqua.
+\nTurpis egestas maecenas pharetra convallis posuere morbi leo urna molestie.
+\nFacilisis gravida neque convallis a cras semper. Ante metus dictum at
+\ntempor commodo ullamcorper a. Pellentesque pulvinar pellentesque habitant morbi
+\ntristique senectus. Nunc sed id semper risus in hendrerit gravida rutrum. Aliquet
+\nsagittis id consectetur purus ut faucibus pulvinar elementum integer. Sit amet
+\nfacilisis magna etiam tempor orci eu lobortis. Dictum non consectetur a erat nam at lectus.
+\n\nA condimentum vitae sapien pellentesque habitant morbi. Aliquet lectus proin nibh
+\nnisl condimentum id venenatis a. Aliquam eleifend mi in nulla posuere sollicitudin.\n\n</string>
+    <string name="menu_item_about">About app</string>
+
 </resources>

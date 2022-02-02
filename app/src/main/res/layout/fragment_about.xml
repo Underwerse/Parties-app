@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="fi.example.tiistai2501.AboutFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_about_header"
+            style="@style/about_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            android:text="@string/name"
+            android:textAlignment="center"
+            android:textSize="28sp" />
+
+    <ImageView
+        android:id="@+id/img_about"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:paddingBottom="26dp"
+        app:srcCompat="@drawable/politics" />
+
+        <ScrollView
+            android:id="@+id/scroll_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/about_text"
+                style="@style/about_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingLeft="8dp"
+                android:paddingTop="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/about"
+                android:textSize="18sp" />
+        </ScrollView>
+    </LinearLayout>
