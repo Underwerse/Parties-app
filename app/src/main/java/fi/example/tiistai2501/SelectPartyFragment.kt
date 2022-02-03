@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import fi.example.tiistai2501.databinding.FragmentSelectPartyBinding
 
 class SelectPartyFragment : Fragment() {
     private lateinit var binding: FragmentSelectPartyBinding
+    lateinit var viewModelParties: PartiesViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle? ): View? {
@@ -21,16 +23,10 @@ class SelectPartyFragment : Fragment() {
 
         val bundle = Bundle()
 
+        viewModelParties = ViewModelProvider(this).get(PartiesViewModel::class.java)
+        binding.viewModelParties = viewModelParties
 
-        val parliamentMembers = ParliamentMembersData.members
-        var partiesList = mutableListOf<String>()
-        parliamentMembers.forEach {
-            partiesList.add(it.party)
-        }
-
-        partiesList = partiesList.toSet().toList() as MutableList<String>
-
-        binding.tvParties.text = partiesList.joinToString()
+        binding.tvParties.text = viewModelParties.partiesList.joinToString()
 
         binding.btnRandom.setOnClickListener { view : View ->
             val inputParty = binding.etInputParty.text.toString()
@@ -40,5 +36,20 @@ class SelectPartyFragment : Fragment() {
         }
 
         return binding.root
+    }
+}
+
+class PartiesViewModel: ViewModel() {
+    val partiesList = getPartiesList()
+
+    @JvmName("getPartiesList1")
+    fun getPartiesList(): List<String> {
+        val parliamentMembers = ParliamentMembersData.members
+        val partiesList = mutableListOf<String>()
+        parliamentMembers.forEach {
+            partiesList.add(it.party)
+        }
+
+        return partiesList.toSet().toList()
     }
 }
