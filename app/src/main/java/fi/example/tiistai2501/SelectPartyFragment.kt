@@ -14,7 +14,8 @@ import fi.example.tiistai2501.databinding.FragmentSelectPartyBinding
 
 class SelectPartyFragment : Fragment() {
     private lateinit var binding: FragmentSelectPartyBinding
-    lateinit var viewModelParties: PartiesViewModel
+    private var partiesList =
+        ParliamentMembersData.members.map { it.party }.toSet().toList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle? ): View? {
@@ -23,10 +24,7 @@ class SelectPartyFragment : Fragment() {
 
         val bundle = Bundle()
 
-        viewModelParties = ViewModelProvider(this).get(PartiesViewModel::class.java)
-        binding.viewModelParties = viewModelParties
-
-        binding.tvParties.text = viewModelParties.partiesList.joinToString()
+        binding.tvParties.text = partiesList.joinToString()
 
         binding.btnRandom.setOnClickListener { view : View ->
             val inputParty = binding.etInputParty.text.toString()
@@ -44,12 +42,6 @@ class PartiesViewModel: ViewModel() {
 
     @JvmName("getPartiesList1")
     fun getPartiesList(): List<String> {
-        val parliamentMembers = ParliamentMembersData.members
-        val partiesList = mutableListOf<String>()
-        parliamentMembers.forEach {
-            partiesList.add(it.party)
-        }
-
-        return partiesList.toSet().toList()
+        return ParliamentMembersData.members.map { it.party }.toSet().toList()
     }
 }
