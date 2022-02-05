@@ -1,22 +1,24 @@
 package fi.example.tiistai2501
 
 import android.annotation.SuppressLint
-import android.graphics.ImageDecoder
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import fi.example.tiistai2501.databinding.FragmentPartyDetailsBinding
+import fi.example.tiistai2501.viewmodels.ParliamentMemberViewModel
+import fi.example.tiistai2501.viewmodels.ParliamentMemberViewModelFactory
 
 class PartyDetailsFragment : Fragment() {
     private lateinit var binding: FragmentPartyDetailsBinding
     private lateinit var viewModel: ParliamentMemberViewModel
+    private val partiesList = ParliamentMembersData.members.map { it.party }.toSet().toList()
+    private lateinit var viewModelFactory: ParliamentMemberViewModelFactory
     private lateinit var selectedParty: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -27,14 +29,25 @@ class PartyDetailsFragment : Fragment() {
         Log.i("ParliamentMemberViewModel", "Called ViewModelProvider.get()")
         selectedParty = arguments?.getString("selectedParty") ?: ""
 
-        viewModel = ViewModelProvider(this).get(ParliamentMemberViewModel::class.java)
-        viewModel.currentParty = selectedParty
+        if (selectedParty != "") {
+            binding.tvPartyTitle.text = "Selected party: " + selectedParty
+            if (partiesList.contains(selectedParty)) {
+                viewModelFactory = ParliamentMemberViewModelFactory(selectedParty)
+                viewModel = ViewModelProvider(
+                    this,
+                    viewModelFactory
+                ).get(ParliamentMemberViewModel::class.java)
+                updateUI()
 
-        if (viewModel.currentParty != "")
-            binding.tvPartyTitle.text = "Selected party: " + viewModel.currentParty
+                binding.btnRandom.setOnClickListener { view : View ->
+                    viewModel.getMember()
+                    updateUI()
+                }
+            } else {
+                binding.tvMemberName.text = "Nothing found with this name: $selectedParty"
+            }
+        }
         else binding.tvPartyTitle.text = "Selected party: nothing selected"
-
-        updateUI()
 
         binding.btnToBack.setOnClickListener { view : View ->
             view.findNavController().navigate(R.id.action_partyDetailsFragment_to_selectPartyFragment)
@@ -42,11 +55,6 @@ class PartyDetailsFragment : Fragment() {
 
         binding.btnToMain.setOnClickListener { view : View ->
             view.findNavController().navigate(R.id.action_partyDetailsFragment_to_titleFragment)
-        }
-
-        binding.btnRandom.setOnClickListener { view : View ->
-            viewModel.getMember(selectedParty)
-            updateUI()
         }
 
         return binding.root
@@ -58,14 +66,14 @@ class PartyDetailsFragment : Fragment() {
         val imageID = resources.getIdentifier(imgResName, "drawable", activity?.getPackageName())
         binding.imgParty.setImageResource(imageID)
 
-        binding.tvMemberName.text = viewModel.currentMember.last +
-                ", " + viewModel.currentMember.first
+        binding.tvMemberName.text = viewModel.getMember().last +
+                ", " + viewModel.getMember().first
         binding.tvMemberBirthYear.text = "Borned in " +
-                viewModel.currentMember.bornYear.toString()
+                viewModel.getMember().bornYear.toString()
         binding.tvDistrict.text = "District: " +
-                viewModel.currentMember.constituency
+                viewModel.getMember().constituency
         binding.tvMemberTwitter.text = "Twitter: " +
-                if (viewModel.currentMember.twitter != "") viewModel.currentMember.twitter else "none"
+                if (viewModel.getMember().twitter != "") viewModel.getMember().twitter else "none"
 
     }
 }
