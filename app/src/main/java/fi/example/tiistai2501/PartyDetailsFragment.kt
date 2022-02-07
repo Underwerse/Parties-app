@@ -1,6 +1,5 @@
 package fi.example.tiistai2501
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -37,11 +36,21 @@ class PartyDetailsFragment : Fragment() {
                     this,
                     viewModelFactory
                 ).get(ParliamentMemberViewModel::class.java)
-                updateUI()
+
+                viewModel.newMember().observe(viewLifecycleOwner) {
+                    val imgResName = "@drawable/" + selectedParty
+                    val imageID = resources.getIdentifier(imgResName, "drawable", activity?.getPackageName())
+                    binding.imgParty.setImageResource(imageID)
+                    binding.tvMemberName.text = it.last + ", " + it.first
+                    binding.tvMemberBirthYear.text = "Borned in " + it.bornYear.toString()
+                    binding.tvDistrict.text = "District: " + it.constituency
+                    binding.tvMemberTwitter.text = "Twitter: " +
+                            if (it.twitter != "") it.twitter else "none"
+
+                }
 
                 binding.btnRandom.setOnClickListener { view : View ->
-                    viewModel.getMember()
-                    updateUI()
+                    viewModel.setMember()
                 }
             } else {
                 binding.tvMemberName.text = "Nothing found with this name: $selectedParty"
@@ -58,22 +67,5 @@ class PartyDetailsFragment : Fragment() {
         }
 
         return binding.root
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun updateUI() {
-        val imgResName = "@drawable/" + selectedParty
-        val imageID = resources.getIdentifier(imgResName, "drawable", activity?.getPackageName())
-        binding.imgParty.setImageResource(imageID)
-
-        binding.tvMemberName.text = viewModel.getMember().last +
-                ", " + viewModel.getMember().first
-        binding.tvMemberBirthYear.text = "Borned in " +
-                viewModel.getMember().bornYear.toString()
-        binding.tvDistrict.text = "District: " +
-                viewModel.getMember().constituency
-        binding.tvMemberTwitter.text = "Twitter: " +
-                if (viewModel.getMember().twitter != "") viewModel.getMember().twitter else "none"
-
     }
 }
