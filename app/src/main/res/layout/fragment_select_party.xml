@@ -8,6 +8,20 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_parties"
+            app:layout_constraintVertical_bias="0.138"/>
+
         <TextView
             android:id="@+id/tv_parties"
             android:layout_width="0dp"
@@ -15,44 +29,14 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
-            android:text=""
-            android:textSize="18sp"
+            android:text="Click on the party's name you wish to get a random member from:"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.062" />
-
-        <Button
-            android:id="@+id/btn_random"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="select random"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_input_party"
-            app:layout_constraintVertical_bias="0.137" />
-
-        <EditText
-            android:id="@+id/et_input_party"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="enter party's name"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_parties"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.05" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

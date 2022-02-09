@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import fi.example.tiistai2501.databinding.FragmentSelectPartyBinding
+import fi.example.tiistai2501.recyclerview.PartiesListAdapter
+import fi.example.tiistai2501.recyclerview.PartyOnClickListener
 
 class SelectPartyFragment : Fragment() {
+    val bundle = Bundle()
     private lateinit var binding: FragmentSelectPartyBinding
     private var partiesList =
         ParliamentMembersData.members.map { it.party }.toSet().toList()
@@ -22,26 +25,22 @@ class SelectPartyFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_select_party,container,false)
 
-        val bundle = Bundle()
-
-        binding.tvParties.text = partiesList.joinToString()
-
-        binding.btnRandom.setOnClickListener { view : View ->
-            val inputParty = binding.etInputParty.text.toString()
-            bundle.putString("selectedParty", inputParty)
-            view.findNavController()
-                .navigate(R.id.action_selectPartyFragment_to_partyDetailsFragment, bundle)
-        }
+        createPartiesList()
 
         return binding.root
     }
-}
 
-class PartiesViewModel: ViewModel() {
-    val partiesList = getPartiesList()
-
-    @JvmName("getPartiesList1")
-    fun getPartiesList(): List<String> {
-        return ParliamentMembersData.members.map { it.party }.toSet().toList()
+    fun createPartiesList() {
+        val recyclerView: RecyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = PartiesListAdapter(partiesList, object: PartyOnClickListener {
+            override fun onClick(party: String) {
+                Log.d("click", "party = $party")
+                bundle.putString("selectedParty", party)
+                view?.findNavController()
+                    ?.navigate(R.id.action_selectPartyFragment_to_partyDetailsFragment, bundle)
+            }
+        })
     }
 }
+
