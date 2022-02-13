@@ -1,4 +1,4 @@
-package fi.example.tiistai2501
+package fi.example.parties
 
 import org.junit.Test
 

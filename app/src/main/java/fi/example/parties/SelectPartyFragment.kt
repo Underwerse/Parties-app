@@ -1,16 +1,14 @@
-package fi.example.tiistai2501
+package fi.example.parties
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import fi.example.tiistai2501.databinding.FragmentSelectPartyBinding
+import fi.example.parties.databinding.FragmentSelectPartyBinding
 
 class SelectPartyFragment : Fragment() {
     private lateinit var binding: FragmentSelectPartyBinding

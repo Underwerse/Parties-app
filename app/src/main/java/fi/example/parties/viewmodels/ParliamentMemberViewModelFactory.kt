@@ -1,4 +1,4 @@
-package fi.example.tiistai2501.viewmodels
+package fi.example.parties.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

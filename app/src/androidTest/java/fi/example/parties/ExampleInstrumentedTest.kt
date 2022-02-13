@@ -1,4 +1,4 @@
-package fi.example.tiistai2501
+package fi.example.parties
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

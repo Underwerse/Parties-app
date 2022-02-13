@@ -7,7 +7,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "fi.example.tiistai2501"
+        applicationId "fi.example.parties"
         minSdk 29
         targetSdk 31
         versionCode 1

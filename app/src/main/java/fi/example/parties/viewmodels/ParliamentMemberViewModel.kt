@@ -1,10 +1,10 @@
-package fi.example.tiistai2501.viewmodels
+package fi.example.parties.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import fi.example.tiistai2501.MemberOfParliament
-import fi.example.tiistai2501.ParliamentMembersData
+import fi.example.parties.MemberOfParliament
+import fi.example.parties.ParliamentMembersData
 
 class ParliamentMemberViewModel(selectedParty: String) : ViewModel() {
     private var currentParty = selectedParty

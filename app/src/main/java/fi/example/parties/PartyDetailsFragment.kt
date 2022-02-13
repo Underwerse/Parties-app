@@ -1,4 +1,4 @@
-package fi.example.tiistai2501
+package fi.example.parties
 
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import fi.example.tiistai2501.databinding.FragmentPartyDetailsBinding
-import fi.example.tiistai2501.viewmodels.ParliamentMemberViewModel
-import fi.example.tiistai2501.viewmodels.ParliamentMemberViewModelFactory
+import fi.example.parties.databinding.FragmentPartyDetailsBinding
+import fi.example.parties.viewmodels.ParliamentMemberViewModel
+import fi.example.parties.viewmodels.ParliamentMemberViewModelFactory
 
 class PartyDetailsFragment : Fragment() {
     private lateinit var binding: FragmentPartyDetailsBinding

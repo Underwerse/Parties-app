@@ -1,4 +1,4 @@
-package fi.example.tiistai2501
+package fi.example.parties
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import fi.example.tiistai2501.databinding.ActivityMainBinding
+import fi.example.parties.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout

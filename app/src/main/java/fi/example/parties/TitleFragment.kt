@@ -1,4 +1,4 @@
-package fi.example.tiistai2501
+package fi.example.parties
 
 import android.os.Bundle
 import android.view.*
@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import fi.example.tiistai2501.databinding.FragmentTitleBinding
+import fi.example.parties.databinding.FragmentTitleBinding
 
 class TitleFragment : Fragment() {
     private lateinit var binding: FragmentTitleBinding

@@ -1,4 +1,4 @@
-package fi.example.tiistai2501
+package fi.example.parties
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
