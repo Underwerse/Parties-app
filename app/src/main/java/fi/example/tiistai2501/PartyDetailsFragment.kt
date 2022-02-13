@@ -28,35 +28,26 @@ class PartyDetailsFragment : Fragment() {
         Log.i("ParliamentMemberViewModel", "Called ViewModelProvider.get()")
         selectedParty = arguments?.getString("selectedParty") ?: ""
 
-        if (selectedParty != "") {
-            binding.tvPartyTitle.text = "Selected party: " + selectedParty
-            if (partiesList.contains(selectedParty)) {
-                viewModelFactory = ParliamentMemberViewModelFactory(selectedParty)
-                viewModel = ViewModelProvider(
-                    this,
-                    viewModelFactory
-                ).get(ParliamentMemberViewModel::class.java)
+        binding.tvPartyTitle.text = "Selected party: " + selectedParty
 
-                viewModel.newMember().observe(viewLifecycleOwner) {
-                    val imgResName = "@drawable/" + selectedParty
-                    val imageID = resources.getIdentifier(imgResName, "drawable", activity?.getPackageName())
-                    binding.imgParty.setImageResource(imageID)
-                    binding.tvMemberName.text = it.last + ", " + it.first
-                    binding.tvMemberBirthYear.text = "Borned in " + it.bornYear.toString()
-                    binding.tvDistrict.text = "District: " + it.constituency
-                    binding.tvMemberTwitter.text = "Twitter: " +
-                            if (it.twitter != "") it.twitter else "none"
+        viewModelFactory = ParliamentMemberViewModelFactory(selectedParty)
+        viewModel = ViewModelProvider(this,viewModelFactory)
+            .get(ParliamentMemberViewModel::class.java)
 
-                }
-
-                binding.btnRandom.setOnClickListener { view : View ->
-                    viewModel.setMember()
-                }
-            } else {
-                binding.tvMemberName.text = "Nothing found with this name: $selectedParty"
-            }
+        viewModel.newMember().observe(viewLifecycleOwner) {
+            val imgResName = "@drawable/" + selectedParty
+            val imageID = resources.getIdentifier(imgResName, "drawable", activity?.getPackageName())
+            binding.imgParty.setImageResource(imageID)
+            binding.tvMemberName.text = it.last + ", " + it.first
+            binding.tvMemberBirthYear.text = "Borned in " + it.bornYear.toString()
+            binding.tvDistrict.text = "District: " + it.constituency
+            binding.tvMemberTwitter.text = "Twitter: " +
+                    if (it.twitter != "") it.twitter else "none"
         }
-        else binding.tvPartyTitle.text = "Selected party: nothing selected"
+
+        binding.btnRandom.setOnClickListener { view : View ->
+            viewModel.setMember()
+        }
 
         binding.btnToBack.setOnClickListener { view : View ->
             view.findNavController().navigate(R.id.action_partyDetailsFragment_to_selectPartyFragment)
