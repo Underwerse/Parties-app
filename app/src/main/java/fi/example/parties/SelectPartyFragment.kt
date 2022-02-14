@@ -1,20 +1,21 @@
 package fi.example.parties
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import fi.example.tiistai2501.databinding.FragmentSelectPartyBinding
-import fi.example.tiistai2501.recyclerview.PartiesListAdapter
-import fi.example.tiistai2501.recyclerview.PartyOnClickListener
 import fi.example.parties.databinding.FragmentSelectPartyBinding
 import fi.example.parties.viewmodels.AddPartyMemberViewModel
+import fi.example.parties.recyclerview.PartiesListAdapter
+import fi.example.parties.recyclerview.PartyOnClickListener
 
 class SelectPartyFragment : Fragment() {
     val bundle = Bundle()
@@ -28,17 +29,8 @@ class SelectPartyFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_select_party,container,false)
 
-        val bundle = Bundle()
         viewModelPartyMemberAdd = ViewModelProvider(this).get(AddPartyMemberViewModel::class.java)
 
-        binding.tvParties.text = partiesList.joinToString()
-
-        binding.btnRandom.setOnClickListener { view : View ->
-            val inputParty = binding.etInputParty.text.toString()
-            bundle.putString("selectedParty", inputParty)
-            view.findNavController()
-                .navigate(R.id.action_selectPartyFragment_to_partyDetailsFragment, bundle)
-        }
         createPartiesList()
 
         binding.btnAddToDb.setOnClickListener {

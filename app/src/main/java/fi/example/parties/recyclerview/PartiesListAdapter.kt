@@ -1,11 +1,11 @@
-package fi.example.tiistai2501.recyclerview
+package fi.example.parties.recyclerview
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import fi.example.tiistai2501.R
+import fi.example.parties.R
 
 class PartiesListAdapter(private val parties : List<String>, private val onClickListener: PartyOnClickListener):
     RecyclerView.Adapter<PartiesListAdapter.PartiesViewHolder>() {
