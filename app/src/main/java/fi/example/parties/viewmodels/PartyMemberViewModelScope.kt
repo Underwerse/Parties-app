@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import fi.example.parties.database.PartyMemberRepository
 import kotlinx.coroutines.launch
 
-class AddPartyMemberViewModel (application: Application) : AndroidViewModel(application) {
+class PartyMemberViewModelScope (application: Application) : AndroidViewModel(application) {
     fun addPartyMember(
         personNumber: Int,
         seatNumber: Int,
