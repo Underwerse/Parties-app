@@ -14,6 +14,9 @@ interface PartyMemberDao {
     @Query("select * from party_members_table where party = :key")
     fun getPartyMemberByParty(key: String): LiveData<PartyMember>
 
+    @Query("select distinct party from party_members_table order by party")
+    fun getParties(): LiveData<List<String>>
+
     @Query("select * from party_members_table where personNumber = :key")
     fun getPartyMemberByPersonNumber(key: Int): PartyMember
 

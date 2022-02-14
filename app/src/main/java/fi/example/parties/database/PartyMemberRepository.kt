@@ -25,4 +25,6 @@ object PartyMemberRepository {
     }
 
     val partyMembers = DB.getInstance().partyMembersDatabaseDao.getAllMembers()
+
+    val parties = DB.getInstance().partyMembersDatabaseDao.getParties()
 }
