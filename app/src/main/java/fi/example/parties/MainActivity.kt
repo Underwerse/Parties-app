@@ -1,12 +1,13 @@
-package fi.example.tiistai2501
+package fi.example.parties
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import fi.example.tiistai2501.databinding.ActivityMainBinding
+import fi.example.parties.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -24,6 +25,12 @@ class MainActivity : AppCompatActivity() {
 
         myObserver = MyObserver()
         lifecycle.addObserver(myObserver)
+
+        appContext = this
+    }
+
+    companion object {
+        lateinit var appContext: Context
     }
 
     override fun onSupportNavigateUp(): Boolean {
