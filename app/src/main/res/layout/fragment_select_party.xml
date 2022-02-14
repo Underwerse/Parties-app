@@ -36,6 +36,29 @@
             app:layout_constraintTop_toBottomOf="@+id/et_input_party"
             app:layout_constraintVertical_bias="0.137" />
 
+        <Button
+            android:id="@+id/btn_add_to_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fill DB with data"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_random"
+            app:layout_constraintVertical_bias="0.052" />
+
+        <Button
+            android:id="@+id/btn_clean_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="clean db"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_to_db"
+            app:layout_constraintVertical_bias="0.107" />
+
         <EditText
             android:id="@+id/et_input_party"
             android:layout_width="wrap_content"

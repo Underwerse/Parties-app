@@ -11,6 +11,7 @@ import fi.example.parties.databinding.FragmentTitleBinding
 class TitleFragment : Fragment() {
     private lateinit var binding: FragmentTitleBinding
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,
@@ -19,6 +20,7 @@ class TitleFragment : Fragment() {
         binding.btnStart.setOnClickListener { view : View ->
             view.findNavController()
                 .navigate(R.id.action_titleFragment_to_selectPartyFragment)
+
         }
 
         setHasOptionsMenu(true)

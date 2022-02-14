@@ -1,5 +1,6 @@
 package fi.example.parties
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -24,6 +25,12 @@ class MainActivity : AppCompatActivity() {
 
         myObserver = MyObserver()
         lifecycle.addObserver(myObserver)
+
+        appContext = this
+    }
+
+    companion object {
+        lateinit var appContext: Context
     }
 
     override fun onSupportNavigateUp(): Boolean {
