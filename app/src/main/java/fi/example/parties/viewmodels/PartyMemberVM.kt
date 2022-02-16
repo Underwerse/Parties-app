@@ -32,43 +32,4 @@ class PartyMemberVM(application: Application) : AndroidViewModel(application) {
             repository.deleteAll()
         }
     }
-
-    /*private var currentParty = selectedParty
-    private val parliamentMembers = ParliamentMembersData.members
-    private var currentMember = MutableLiveData<MemberOfParliament>()
-
-    init {
-        setMember()
-    }
-
-    fun newMember(): LiveData<MemberOfParliament> {
-        return currentMember
-    }
-
-    fun setMember() {
-        currentMember.value = parliamentMembers.filter { it.party == currentParty }.random()
-    }
-
-    fun cleanDb() {
-        viewModelScope.launch {
-            PartyMemberRepository.deleteAll()
-        }
-    }
-
-    fun addMember(member: PartyMember) {
-        viewModelScope.launch {
-            PartyMemberRepository.addPartyMember(
-                member.personNumber,
-                member.seatNumber,
-                member.last,
-                member.first,
-                member.party,
-                member.minister,
-                member.picture,
-                member.twitter,
-                member.bornYear,
-                member.constituency
-            )
-        }
-    }*/
 }

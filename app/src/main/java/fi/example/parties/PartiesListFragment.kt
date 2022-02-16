@@ -29,13 +29,12 @@ class PartiesListFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_parties_list,container,false)
 
-        vmPartiesList = ViewModelProvider(this).get(PartiesListVM::class.java)
 
         vmPartiesList = ViewModelProvider(this).get(PartiesListVM::class.java)
 
-//        vmPartiesList.partiesList.observe(viewLifecycleOwner) {
-//            createPartiesList(it)
-//        }
+        vmPartiesList.partiesList.observe(viewLifecycleOwner) {
+            createPartiesList(it)
+        }
 
         return binding.root
     }

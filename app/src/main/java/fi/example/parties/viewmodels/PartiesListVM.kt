@@ -3,20 +3,22 @@ package fi.example.parties.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import fi.example.parties.room.DB
 import fi.example.parties.room.repositories.PartyMemberRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class PartiesListVM(application: Application) : AndroidViewModel(application) {
-    private val _partiesList = MutableLiveData<List<String>>()
-    private val repository: PartyMemberRepository
 
+    private val _getAllParties: LiveData<List<String>>
+    private val repository: PartyMemberRepository
     val partiesList: LiveData<List<String>>
-        get() = _partiesList
+        get() = _getAllParties
 
     init {
         val partyMemberDao = DB.getInstance(application).partyMemberDao()
         repository = PartyMemberRepository(partyMemberDao)
-        _partiesList.value = repository.parties.value
+        _getAllParties = repository.getAllParties
     }
 }
