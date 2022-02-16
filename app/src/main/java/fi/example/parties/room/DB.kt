@@ -1,14 +1,17 @@
-package fi.example.parties.database
+package fi.example.parties.room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import fi.example.parties.MainActivity
+import fi.example.parties.room.entities.PartyMember
+import fi.example.parties.room.entities.PartyMemberDao
 
 @Database(entities = [PartyMember::class], version = 4, exportSchema = false)
 abstract class DB: RoomDatabase() {
-    abstract val partyMembersDatabaseDao: PartyMemberDao
+//    abstract val partyMemberDao: PartyMemberDao
+    abstract fun partyMemberDao(): PartyMemberDao
 
     companion object {
 

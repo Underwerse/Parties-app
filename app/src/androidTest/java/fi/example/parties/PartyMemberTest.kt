@@ -2,9 +2,9 @@ package fi.example.parties
 
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
-import fi.example.parties.database.DB
-import fi.example.parties.database.PartyMember
-import fi.example.parties.database.PartyMemberDao
+import fi.example.parties.room.DB
+import fi.example.parties.room.entities.PartyMember
+import fi.example.parties.room.entities.PartyMemberDao
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -24,7 +24,7 @@ class PartyMemberTest {
             // Allowing main thread queries, just for testing.
             .allowMainThreadQueries()
             .build()
-        partyDao = db.partyMembersDatabaseDao
+        partyDao = db.partyMemberDao
     }
 
     @After
@@ -49,7 +49,7 @@ class PartyMemberTest {
             bornYear = 1966,
             constituency = "Satakunta",
         )
-        partyDao.insertOrUpdate()
+        partyDao.addMember()
         val partyMemberByNumber = partyDao.getPartyMemberByPersonNumber(1467)
         Assert.assertEquals(partyMemberByNumber?.personNumber, 1467)
     }

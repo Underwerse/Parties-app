@@ -3,11 +3,11 @@ package fi.example.parties.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import fi.example.parties.database.PartyMemberRepository
+import fi.example.parties.room.repositories.PartyMemberRepository
 import kotlinx.coroutines.launch
 
-class PartyMemberViewModelScope (application: Application) : AndroidViewModel(application) {
-    fun addPartyMember(
+class PartyMemberVMScope (application: Application) : AndroidViewModel(application) {
+    /*fun addMember(
         personNumber: Int,
         seatNumber: Int,
         last: String,
@@ -39,5 +39,5 @@ class PartyMemberViewModelScope (application: Application) : AndroidViewModel(ap
         viewModelScope.launch {
             PartyMemberRepository.deleteAll()
         }
-    }
+    }*/
 }

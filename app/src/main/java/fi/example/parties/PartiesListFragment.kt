@@ -12,43 +12,42 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import fi.example.parties.database.ParliamentMember
-import fi.example.parties.databinding.FragmentSelectPartyBinding
-import fi.example.parties.viewmodels.PartyMemberViewModelScope
-import fi.example.parties.recyclerview.PartiesListAdapter
-import fi.example.parties.recyclerview.PartyOnClickListener
-import fi.example.parties.viewmodels.ParliamentViewModel
-import fi.example.parties.viewmodels.PartiesListViewModel
+import fi.example.parties.room.entities.PartyMember
+import fi.example.parties.databinding.FragmentPartiesListBinding
+import fi.example.parties.recyclerviews.PartiesListAdapter
+import fi.example.parties.recyclerviews.PartyOnClickListener
+import fi.example.parties.viewmodels.PartyMemberVM
+import fi.example.parties.viewmodels.PartiesListVM
 
-class SelectPartyFragment : Fragment() {
+class PartiesListFragment : Fragment() {
     val bundle = Bundle()
-    private lateinit var binding: FragmentSelectPartyBinding
+    private lateinit var binding: FragmentPartiesListBinding
     private val parliamentMembers = ParliamentMembersData.members
-//    private lateinit var viewModelPartyMemberScope: PartyMemberViewModelScope
-    private lateinit var viewModel: PartiesListViewModel
-    private lateinit var parliamentViewModel: ParliamentViewModel
+//    private lateinit var vmPartyMemberScope: PartyMemberVMScope
+    private lateinit var vmPartiesList: PartiesListVM
+    private lateinit var vmPartyMember: PartyMemberVM
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle? ): View? {
         binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_select_party,container,false)
+            R.layout.fragment_parties_list,container,false)
 
-        parliamentViewModel = ViewModelProvider(this).get(ParliamentViewModel::class.java)
+        vmPartyMember = ViewModelProvider(this).get(PartyMemberVM::class.java)
+        vmPartiesList = ViewModelProvider(this).get(PartiesListVM::class.java)
 
-//        viewModelPartyMemberScope = ViewModelProvider(this).get(PartyMemberViewModelScope::class.java)
-        viewModel = ViewModelProvider(this).get(PartiesListViewModel::class.java)
+//        vmPartyMemberScope = ViewModelProvider(this).get(PartyMemberVMScope::class.java)
+        vmPartiesList = ViewModelProvider(this).get(PartiesListVM::class.java)
 
-        viewModel.partiesList.observe(viewLifecycleOwner) {
-            createPartiesList(it)
-        }
+//        vmPartiesList.partiesList.observe(viewLifecycleOwner) {
+//            createPartiesList(it)
+//        }
 
         binding.btnAddToDb.setOnClickListener {
             insertDataToDB()
         }
 
         binding.btnCleanDb.setOnClickListener {
-//            viewModelPartyMemberScope.cleanDb()
-            parliamentViewModel.deleteAll()
+            vmPartyMember.deleteAll()
             Toast.makeText(requireContext(), "DB has been cleaned.", Toast.LENGTH_SHORT).show()
         }
 
@@ -57,7 +56,7 @@ class SelectPartyFragment : Fragment() {
 
     private fun insertDataToDB() {
         parliamentMembers.forEach {
-            val member = ParliamentMember(
+            val member = PartyMember(
                 it.personNumber,
                 it.seatNumber,
                 it.last,
@@ -69,7 +68,7 @@ class SelectPartyFragment : Fragment() {
                 it.bornYear,
                 it.constituency
             )
-            parliamentViewModel.addMember(member)
+            vmPartyMember.addMember(member)
         }
         Toast.makeText(requireContext(), "All the members have been added.", Toast.LENGTH_SHORT).show()
     }

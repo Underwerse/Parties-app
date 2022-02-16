@@ -1,4 +1,4 @@
-package fi.example.parties.database
+package fi.example.parties.room.entities
 
 import androidx.room.*
 

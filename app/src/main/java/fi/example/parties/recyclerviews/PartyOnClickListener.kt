@@ -1,4 +1,4 @@
-package fi.example.parties.recyclerview
+package fi.example.parties.recyclerviews
 
 interface PartyOnClickListener {
     fun onClick(party: String)

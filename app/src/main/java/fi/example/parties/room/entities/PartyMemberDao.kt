@@ -1,4 +1,4 @@
-package fi.example.parties.database
+package fi.example.parties.room.entities
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -6,7 +6,7 @@ import androidx.room.*
 @Dao
 interface PartyMemberDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertOrUpdate(member: PartyMember)
+    suspend fun addMember(member: PartyMember)
 
     @Query("select * from party_members_table order by first")
     fun getAllMembers(): LiveData<List<PartyMember>>

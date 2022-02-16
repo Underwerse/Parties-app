@@ -18,9 +18,9 @@
     </fragment>
     <fragment
         android:id="@+id/selectPartyFragment"
-        android:name="fi.example.parties.SelectPartyFragment"
+        android:name="fi.example.parties.PartiesListFragment"
         android:label="Select your party"
-        tools:layout="@layout/fragment_select_party"
+        tools:layout="@layout/fragment_parties_list"
         >
         <action
             android:id="@+id/action_selectPartyFragment_to_partyDetailsFragment"
