@@ -12,13 +12,11 @@ import androidx.navigation.findNavController
 import fi.example.parties.databinding.FragmentPartyDetailsBinding
 import fi.example.parties.viewmodels.PartyMemberVM
 //import fi.example.parties.viewmodels.PartyMemberVMFactory
-import fi.example.parties.viewmodels.PartyMemberVMScope
 
 class PartyDetailsFragment : Fragment() {
     private lateinit var binding: FragmentPartyDetailsBinding
     private lateinit var vmPartyMember: PartyMemberVM
 //    private lateinit var vmPartyMemberFactory: PartyMemberVMFactory
-    private lateinit var viewModelPartyMemberScope: PartyMemberVMScope
     private lateinit var selectedParty: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +32,6 @@ class PartyDetailsFragment : Fragment() {
 //        vmPartyMemberFactory = PartyMemberVMFactory(selectedParty)
 //        vmPartyMember = ViewModelProvider(this,vmPartyMemberFactory)
 //            .get(PartyMemberVM::class.java)
-        viewModelPartyMemberScope = ViewModelProvider(this).get(PartyMemberVMScope::class.java)
 
 //        vmPartyMember.newMember().observe(viewLifecycleOwner) {
 //            val imgResName = "@drawable/" + selectedParty

@@ -48,4 +48,15 @@
         android:name="fi.example.parties.AboutFragment"
         android:label="About app"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/dbHandleFragment"
+        android:name="fi.example.parties.DbHandleFragment"
+        android:label="SQLite DB handler"
+        tools:layout="@layout/fragment_db_handle">
+        <action
+            android:id="@+id/action_dbHandleFragment_to_selectPartyFragment"
+            app:destination="@id/selectPartyFragment"
+            app:popUpTo="@id/titleFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
 </navigation>

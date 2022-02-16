@@ -16,5 +16,7 @@
 \n\nA condimentum vitae sapien pellentesque habitant morbi. Aliquet lectus proin nibh
 \nnisl condimentum id venenatis a. Aliquam eleifend mi in nulla posuere sollicitudin.\n\n</string>
     <string name="menu_item_about">About app</string>
+    <string name="menu_item_db">Fill DB with data</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
