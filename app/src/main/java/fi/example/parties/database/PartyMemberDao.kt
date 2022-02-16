@@ -21,5 +21,5 @@ interface PartyMemberDao {
     fun getPartyMemberByPersonNumber(key: Int): PartyMember
 
     @Query("delete from party_members_table")
-    suspend fun deleteAllMembers()
+    suspend fun deleteAll()
 }

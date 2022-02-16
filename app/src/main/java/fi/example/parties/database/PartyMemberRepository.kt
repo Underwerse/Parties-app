@@ -14,17 +14,17 @@ object PartyMemberRepository {
         constituency: String
     ) {
         DB.getInstance()
-            .partyMembersDatabaseDao
+            .partyMemberDao
             .insertOrUpdate(PartyMember(personNumber, seatNumber, last, first, party, minister, picture, twitter, bornYear, constituency))
     }
 
     suspend fun deleteAll() {
         DB.getInstance()
-            .partyMembersDatabaseDao
-            .deleteAllMembers()
+            .partyMemberDao
+            .deleteAll()
     }
 
-    val partyMembers = DB.getInstance().partyMembersDatabaseDao.getAllMembers()
+    val partyMembers = DB.getInstance().partyMemberDao.getAllMembers()
 
-    val parties = DB.getInstance().partyMembersDatabaseDao.getParties()
+    val parties = DB.getInstance().partyMemberDao.getParties()
 }
