@@ -21,7 +21,7 @@ object PartyMemberRepository {
     suspend fun deleteAll() {
         DB.getInstance()
             .partyMemberDao
-            .deleteAllMembers()
+            .deleteAll()
     }
 
     val partyMembers = DB.getInstance().partyMemberDao.getAllMembers()

@@ -23,4 +23,10 @@ class ParliamentViewModel(application: Application): AndroidViewModel(applicatio
             repository.addMember(parliamentMember)
         }
     }
+
+    fun deleteAll() {
+        viewModelScope.launch {
+            repository.deleteAll()
+        }
+    }
 }
