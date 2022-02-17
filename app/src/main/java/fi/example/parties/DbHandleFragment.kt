@@ -35,8 +35,8 @@ class DbHandleFragment : Fragment() {
         binding.btnCleanDb.setOnClickListener {
             vmPartyMember.deleteAll()
             Toast.makeText(requireContext(), "DB has been cleaned.", Toast.LENGTH_SHORT).show()
-//            view?.findNavController()
-//                ?.navigate(R.id.action_dbHandleFragment_to_selectPartyFragment)
+            view?.findNavController()
+                ?.navigate(R.id.action_dbHandleFragment_to_selectPartyFragment)
         }
 
         return binding.root
@@ -59,7 +59,7 @@ class DbHandleFragment : Fragment() {
             vmPartyMember.addMember(member)
         }
         Toast.makeText(requireContext(), "All the members have been added.", Toast.LENGTH_SHORT).show()
-//        view?.findNavController()
-//            ?.navigate(R.id.action_dbHandleFragment_to_selectPartyFragment)
+        view?.findNavController()
+            ?.navigate(R.id.action_dbHandleFragment_to_selectPartyFragment)
     }
 }

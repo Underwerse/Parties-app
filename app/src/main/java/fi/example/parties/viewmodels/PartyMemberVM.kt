@@ -8,6 +8,7 @@ import fi.example.parties.room.DB
 import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.room.repositories.PartyMemberRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class PartyMemberVM(application: Application) : AndroidViewModel(application) {
@@ -22,13 +23,13 @@ class PartyMemberVM(application: Application) : AndroidViewModel(application) {
     }
 
     fun addMember(member: PartyMember) {
-        viewModelScope.launch(Dispatchers.IO) {
+        GlobalScope.launch(Dispatchers.IO) {
             repository.addMember(member)
         }
     }
 
     fun deleteAll() {
-        viewModelScope.launch(Dispatchers.IO) {
+        GlobalScope.launch(Dispatchers.IO) {
             repository.deleteAll()
         }
     }
