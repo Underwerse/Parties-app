@@ -24,8 +24,10 @@ class PartiesListFragment : Fragment() {
     private lateinit var binding: FragmentPartiesListBinding
     private lateinit var vmPartiesList: PartiesListVM
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle? ): View? {
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?
+    ): View? {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_parties_list,container,false)
 

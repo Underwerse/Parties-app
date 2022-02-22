@@ -7,7 +7,9 @@ import androidx.lifecycle.LiveData
 import fi.example.parties.room.DB
 import fi.example.parties.room.repositories.PartyMemberRepository
 
-class MembersListVM(application: Application, selectedParty: String) : AndroidViewModel(application) {
+class MembersListVM(application: Application,
+                    selectedParty: String
+) : AndroidViewModel(application) {
     private val _getAllMembersByParty: LiveData<List<String>>
     private val repository: PartyMemberRepository
     val membersList: LiveData<List<String>>
