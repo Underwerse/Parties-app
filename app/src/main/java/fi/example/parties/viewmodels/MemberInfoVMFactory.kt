@@ -4,12 +4,12 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class MemberVMFactory(private val application: Application,
-                           private val selectedParty: String)
+class MemberInfoVMFactory(private val application: Application,
+                           private val memberPersNumber: Int)
     : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MembersVM::class.java)){
-            return MembersVM(application, selectedParty) as T
+        if (modelClass.isAssignableFrom(MemberInfoVM::class.java)){
+            return MemberInfoVM(application, memberPersNumber) as T
         }
         throw IllegalArgumentException("Unknown View Model Class")
     }

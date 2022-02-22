@@ -30,25 +30,4 @@ class PartyMemberVM(application: Application) : AndroidViewModel(application) {
             repository.deleteAll()
         }
     }
-    
-    /*private val getAllMembers: LiveData<List<PartyMember>>
-    private val repository: PartyMemberRepository
-
-    init {
-        val partyMemberDao = DB.getInstance(application).partyMemberDao
-        repository = PartyMemberRepository(partyMemberDao)
-        getAllMembers = repository.getAllMembers
-    }
-
-    fun addMember(member: PartyMember) {
-        GlobalScope.launch {
-            repository.addMember(member)
-        }
-    }
-
-    fun deleteAll() {
-        GlobalScope.launch {
-            repository.deleteAll()
-        }
-    }*/
 }

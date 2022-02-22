@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fi.example.parties.R
 
-class PartiesListAdapter(private val parties : List<String>, private val onClickListener: PartyOnClickListener):
-    RecyclerView.Adapter<PartiesListAdapter.PartiesViewHolder>() {
+class PartiesAdapter(private val parties : List<String>, private val onClickListener: PartyOnClickListener):
+    RecyclerView.Adapter<PartiesAdapter.PartiesViewHolder>() {
     inner class PartiesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val partyName: TextView = itemView.findViewById(R.id.tv_party_name)
     }

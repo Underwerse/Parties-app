@@ -6,20 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.databinding.FragmentPartiesListBinding
-import fi.example.parties.recyclerviews.PartiesListAdapter
+import fi.example.parties.recyclerviews.PartiesAdapter
 import fi.example.parties.recyclerviews.PartyOnClickListener
-import fi.example.parties.viewmodels.PartyMemberVM
 import fi.example.parties.viewmodels.PartiesListVM
 
-class PartiesListFragment : Fragment() {
+class PartiesFragment : Fragment() {
     val bundle = Bundle()
     private lateinit var binding: FragmentPartiesListBinding
     private lateinit var vmPartiesList: PartiesListVM
@@ -44,7 +41,7 @@ class PartiesListFragment : Fragment() {
     fun createPartiesList(partiesList: List<String>) {
         val recyclerView: RecyclerView = binding.recyclerViewAllParties
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = PartiesListAdapter(partiesList, object: PartyOnClickListener {
+        recyclerView.adapter = PartiesAdapter(partiesList, object: PartyOnClickListener {
             override fun onClick(party: String) {
                 Log.d("click", "party = $party")
                 bundle.putString("selectedParty", party)

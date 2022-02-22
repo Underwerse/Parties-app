@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/selectPartyFragment"
-        android:name="fi.example.parties.PartiesListFragment"
+        android:name="fi.example.parties.PartiesFragment"
         android:label="Select your party"
         tools:layout="@layout/fragment_parties_list"
         >
@@ -28,9 +28,9 @@
     </fragment>
     <fragment
         android:id="@+id/partyDetailsFragment"
-        android:name="fi.example.parties.PartyDetailsFragment"
+        android:name="fi.example.parties.MemberInfoFragment"
         android:label="Selected members's details"
-        tools:layout="@layout/fragment_party_details"
+        tools:layout="@layout/fragment_member_info"
         >
         <action
             android:id="@+id/action_partyDetailsFragment_to_selectedPartyMembersFragment"
@@ -57,9 +57,9 @@
     </fragment>
     <fragment
         android:id="@+id/selectedPartyMembersFragment"
-        android:name="fi.example.parties.SelectedPartyMembersFragment"
+        android:name="fi.example.parties.MembersFragment"
         android:label="Select party's member"
-        tools:layout="@layout/fragment_selected_party_members" >
+        tools:layout="@layout/fragment_members" >
         <action
             android:id="@+id/action_selectedPartyMembersFragment_to_partyDetailsFragment"
             app:destination="@id/partyDetailsFragment" />

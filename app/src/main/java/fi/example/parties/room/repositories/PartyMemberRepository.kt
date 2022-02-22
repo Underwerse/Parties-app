@@ -21,9 +21,12 @@ class PartyMemberRepository(private val partyMemberDao: PartyMemberDao) {
             .deleteAll()
     }
     
-    fun getPartyMemberByParty(selectedParty: String): LiveData<List<String>> {
+    fun getPartyMembersByParty(selectedParty: String): LiveData<List<PartyMember>> {
         Log.d("LOG", "Repository: getPartyMemberByParty run")
-        return partyMemberDao.getPartyMemberByParty(selectedParty)
+        return partyMemberDao.getPartyMembersByParty(selectedParty)
     }
     
+    fun getMemberByPersNumber(personNumber: Int): LiveData<PartyMember> {
+        return partyMemberDao.getMemberByPersNumber(personNumber)
+    }
 }
