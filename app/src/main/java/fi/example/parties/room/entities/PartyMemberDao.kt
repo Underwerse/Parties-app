@@ -18,7 +18,7 @@ interface PartyMemberDao {
     fun getParties(): LiveData<List<String>>
 
     @Query("select * from party_members_table where personNumber = :key")
-    fun getPartyMemberByPersonNumber(key: Int): PartyMember
+    suspend fun getMemberByPersonNumber(key: Int): PartyMember?
 
     @Query("delete from party_members_table")
     suspend fun deleteAll()

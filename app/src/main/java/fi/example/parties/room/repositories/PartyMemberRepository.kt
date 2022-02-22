@@ -16,7 +16,7 @@ class PartyMemberRepository(private val partyMemberDao: PartyMemberDao) {
 
     suspend fun deleteAll() {
         DB.getInstance()
-            .partyMemberDao()
+            .partyMemberDao
             .deleteAll()
     }
 

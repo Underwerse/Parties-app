@@ -50,7 +50,7 @@ class PartyMemberTest {
             constituency = "Satakunta",
         )
         partyDao.addMember()
-        val partyMemberByNumber = partyDao.getPartyMemberByPersonNumber(1467)
+        val partyMemberByNumber = partyDao.getMemberByPersonNumber(1467)
         Assert.assertEquals(partyMemberByNumber?.personNumber, 1467)
     }
 }

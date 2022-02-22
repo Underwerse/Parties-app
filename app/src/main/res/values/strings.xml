@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tehtävä 8</string>
+    <string name="app_name">Parties</string>
     <string name="name">Parties info</string>
     <string name="about">This is the test Android-app.
 \n\nHere it\'s been implemented a navigation.
