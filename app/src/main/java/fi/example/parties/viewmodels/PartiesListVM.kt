@@ -1,6 +1,7 @@
 package fi.example.parties.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,5 +22,6 @@ class PartiesListVM(application: Application) : AndroidViewModel(application) {
         val partyMemberDao = DB.getInstance(application).partyMemberDao
         repository = PartyMemberRepository(partyMemberDao)
         _getAllParties = repository.getAllParties
+        Log.d("LOG", "PartiesListVM: _getAllParties received")
     }
 }

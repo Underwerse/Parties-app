@@ -33,6 +33,7 @@ class PartiesListFragment : Fragment() {
 
         vmPartiesList.partiesList.observe(viewLifecycleOwner) {
             createPartiesList(it)
+            Log.d("LOG", "PartiesListFragment: partiesList.observe run")
         }
 
         return binding.root

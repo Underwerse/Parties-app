@@ -1,5 +1,6 @@
 package fi.example.parties.room.repositories
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import fi.example.parties.room.DB
 import fi.example.parties.room.entities.PartyMember
@@ -21,6 +22,7 @@ class PartyMemberRepository(private val partyMemberDao: PartyMemberDao) {
     }
     
     fun getPartyMemberByParty(selectedParty: String): LiveData<List<String>> {
+        Log.d("LOG", "Repository: getPartyMemberByParty run")
         return partyMemberDao.getPartyMemberByParty(selectedParty)
     }
     
