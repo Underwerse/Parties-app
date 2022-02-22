@@ -19,7 +19,7 @@ class TitleFragment : Fragment() {
 
         binding.btnStart.setOnClickListener { view : View ->
             view.findNavController()
-                .navigate(R.id.action_titleFragment_to_selectPartyFragment)
+                .navigate(R.id.action_titleFragment_to_partiesFragment)
 
         }
 

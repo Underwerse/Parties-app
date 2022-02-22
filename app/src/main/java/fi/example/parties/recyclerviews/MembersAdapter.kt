@@ -23,7 +23,6 @@ class MembersAdapter(private val members : List<String>, private val onClickList
 	
 	override fun onBindViewHolder(holder: MembersViewHolder, position: Int) {
 		val member = members[position]
-		Log.d("LOG", "members[$position]: $member")
 		holder.memberName.text = member
 		holder.memberName.setOnClickListener {
 			onClickListener.onClick(member)

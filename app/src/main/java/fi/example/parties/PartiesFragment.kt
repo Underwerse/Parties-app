@@ -11,26 +11,26 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import fi.example.parties.databinding.FragmentPartiesListBinding
+import fi.example.parties.databinding.FragmentPartiesBinding
 import fi.example.parties.recyclerviews.PartiesAdapter
 import fi.example.parties.recyclerviews.PartyOnClickListener
-import fi.example.parties.viewmodels.PartiesListVM
+import fi.example.parties.viewmodels.PartiesVM
 
 class PartiesFragment : Fragment() {
     val bundle = Bundle()
-    private lateinit var binding: FragmentPartiesListBinding
-    private lateinit var vmPartiesList: PartiesListVM
+    private lateinit var binding: FragmentPartiesBinding
+    private lateinit var vmParties: PartiesVM
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_parties_list,container,false)
+            R.layout.fragment_parties,container,false)
 
-        vmPartiesList = ViewModelProvider(this).get(PartiesListVM::class.java)
+        vmParties = ViewModelProvider(this).get(PartiesVM::class.java)
 
-        vmPartiesList.partiesList.observe(viewLifecycleOwner) {
+        vmParties.partiesList.observe(viewLifecycleOwner) {
             createPartiesList(it)
             Log.d("LOG", "PartiesListFragment: partiesList.observe run")
         }
@@ -43,10 +43,9 @@ class PartiesFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = PartiesAdapter(partiesList, object: PartyOnClickListener {
             override fun onClick(party: String) {
-                Log.d("click", "party = $party")
                 bundle.putString("selectedParty", party)
                 view?.findNavController()
-                    ?.navigate(R.id.action_selectPartyFragment_to_selectedPartyMembersFragment, bundle)
+                    ?.navigate(R.id.action_partiesFragment_to_membersFragment, bundle)
             }
         })
     }

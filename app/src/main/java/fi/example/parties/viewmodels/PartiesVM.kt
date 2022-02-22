@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class PartiesListVM(application: Application
+class PartiesVM(application: Application
 ) : AndroidViewModel(application) {
     private val _getAllParties: LiveData<List<String>>
     private val repository: PartyMemberRepository

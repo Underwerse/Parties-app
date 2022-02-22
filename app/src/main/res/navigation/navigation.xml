@@ -12,31 +12,34 @@
         tools:layout="@layout/fragment_title"
         >
         <action
-            android:id="@+id/action_titleFragment_to_selectPartyFragment"
-            app:destination="@id/selectPartyFragment" />
+            android:id="@+id/action_titleFragment_to_partiesFragment"
+            app:destination="@id/PartiesFragment" />
 
     </fragment>
     <fragment
-        android:id="@+id/selectPartyFragment"
+        android:id="@+id/PartiesFragment"
         android:name="fi.example.parties.PartiesFragment"
         android:label="Select your party"
-        tools:layout="@layout/fragment_parties_list"
+        tools:layout="@layout/fragment_parties"
         >
         <action
-            android:id="@+id/action_selectPartyFragment_to_selectedPartyMembersFragment"
-            app:destination="@id/selectedPartyMembersFragment" />
+            android:id="@+id/action_partiesFragment_to_membersFragment"
+            app:destination="@id/membersFragment" />
     </fragment>
     <fragment
-        android:id="@+id/partyDetailsFragment"
+        android:id="@+id/memberInfoFragment"
         android:name="fi.example.parties.MemberInfoFragment"
         android:label="Selected members's details"
         tools:layout="@layout/fragment_member_info"
         >
+        <argument
+            android:name="selectedMemberParty"
+            android:defaultValue="" />
         <action
-            android:id="@+id/action_partyDetailsFragment_to_selectedPartyMembersFragment"
-            app:destination="@id/selectedPartyMembersFragment" />
+            android:id="@+id/action_memberInfoFragment_to_membersFragment"
+            app:destination="@id/membersFragment" />
         <action
-            android:id="@+id/action_partyDetailsFragment_to_titleFragment"
+            android:id="@+id/action_memberInfoFragment_to_titleFragment"
             app:destination="@id/titleFragment" />
     </fragment>
     <fragment
@@ -50,18 +53,18 @@
         android:label="SQLite DB handler"
         tools:layout="@layout/fragment_db_handle">
         <action
-            android:id="@+id/action_dbHandleFragment_to_selectPartyFragment"
-            app:destination="@id/selectPartyFragment"
+            android:id="@+id/action_dbHandleFragment_to_partiesFragment"
+            app:destination="@id/PartiesFragment"
             app:popUpTo="@id/titleFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
-        android:id="@+id/selectedPartyMembersFragment"
+        android:id="@+id/membersFragment"
         android:name="fi.example.parties.MembersFragment"
         android:label="Select party's member"
         tools:layout="@layout/fragment_members" >
         <action
-            android:id="@+id/action_selectedPartyMembersFragment_to_partyDetailsFragment"
-            app:destination="@id/partyDetailsFragment" />
+            android:id="@+id/action_membersFragment_to_memberInfoFragment"
+            app:destination="@id/memberInfoFragment" />
     </fragment>
 </navigation>

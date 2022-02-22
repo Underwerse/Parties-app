@@ -2,7 +2,6 @@ package fi.example.parties
 
 import android.app.Application
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,13 +13,12 @@ import fi.example.parties.databinding.FragmentMemberInfoBinding
 import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.viewmodels.MemberInfoVM
 import fi.example.parties.viewmodels.MemberInfoVMFactory
-import fi.example.parties.viewmodels.MembersVM
 
 class MemberInfoFragment: Fragment() {
+    val bundle = Bundle()
     private lateinit var binding: FragmentMemberInfoBinding
     private lateinit var vmMemberInfo: MemberInfoVM
     private lateinit var vmMemberInfoFactory: MemberInfoVMFactory
-//    private lateinit var selectedMemberPersNumber: Int
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -31,8 +29,11 @@ class MemberInfoFragment: Fragment() {
     
         val application = Application()
         
+        val selectedMemberParty = arguments?.getString("selectedParty") ?: ""
         val selectedMemberPersNumber = arguments?.getInt("memberPersNumber") ?: 0
     
+        bundle.putString("selectedParty", selectedMemberParty)
+        
         vmMemberInfoFactory = MemberInfoVMFactory(application, selectedMemberPersNumber)
         vmMemberInfo = ViewModelProvider(this, vmMemberInfoFactory)
             .get(MemberInfoVM::class.java)
@@ -46,11 +47,13 @@ class MemberInfoFragment: Fragment() {
         }
 
         binding.btnToBack.setOnClickListener { view : View ->
-            view.findNavController().navigate(R.id.action_partyDetailsFragment_to_selectedPartyMembersFragment)
+            view.findNavController()
+                .navigate(R.id.action_memberInfoFragment_to_membersFragment, bundle)
         }
 
         binding.btnToMain.setOnClickListener { view : View ->
-            view.findNavController().navigate(R.id.action_partyDetailsFragment_to_titleFragment)
+            view.findNavController()
+                .navigate(R.id.action_memberInfoFragment_to_titleFragment)
         }
 
         return binding.root

@@ -13,6 +13,7 @@ class MembersVM(application: Application,
 ) : AndroidViewModel(application) {
     private val _getAllMembersByParty: LiveData<List<PartyMember>>
     private val repository: PartyMemberRepository
+    
     val membersList: LiveData<List<PartyMember>>
         get() = _getAllMembersByParty
 
@@ -21,6 +22,5 @@ class MembersVM(application: Application,
         repository = PartyMemberRepository(partyMemberDao)
         _getAllMembersByParty = repository.getPartyMembersByParty(selectedParty)
         Log.d("LOG", "MembersListVM _getAllMembersByParty received")
-        Log.d("LOG", "Selected party: $selectedParty")
     }
 }

@@ -21,6 +21,5 @@ class MemberInfoVM(application: Application,
         repository = PartyMemberRepository(partyMemberDao)
         _getMemberByPersNumber = repository.getMemberByPersNumber(memberPersNumber)
         Log.d("LOG", "MemberInfoVM _getAllMembersByParty received")
-        Log.d("LOG", "Selected member pers. num: $memberPersNumber")
     }
 }

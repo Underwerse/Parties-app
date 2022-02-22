@@ -64,13 +64,18 @@ class MembersFragment : Fragment() {
 							&& it.last == member.split(' ')[1]
 				}[0].personNumber
 				
+				val memberParty = membersList.filter {
+					it.first == member.split(' ')[0]
+							&& it.last == member.split(' ')[1]
+				}[0].party
+				
 				Log.d("LOG", "Member clickked: $member")
-				Log.d("LOG", "Member pers. num: $memberPersNumber")
 				
 				bundle.putString("selectedMember", member)
+				bundle.putString("selectedParty", memberParty)
 				bundle.putInt("memberPersNumber", memberPersNumber)
 				view?.findNavController()
-					?.navigate(R.id.action_selectedPartyMembersFragment_to_partyDetailsFragment, bundle)
+					?.navigate(R.id.action_membersFragment_to_memberInfoFragment, bundle)
 			}
 		})
 	}

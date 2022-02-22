@@ -11,11 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import fi.example.parties.databinding.FragmentDbHandleBinding
 import fi.example.parties.room.entities.PartyMember
-import fi.example.parties.viewmodels.PartyMemberVM
+import fi.example.parties.viewmodels.FillDbVM
 
 class DbHandleFragment : Fragment() {
     private lateinit var binding: FragmentDbHandleBinding
-    private lateinit var vmPartyMember: PartyMemberVM
+    private lateinit var vmFillDb: FillDbVM
     private val parliamentMembers = ParliamentMembersData.members
 
     override fun onCreateView(
@@ -26,17 +26,17 @@ class DbHandleFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,
         R.layout.fragment_db_handle, container, false)
 
-        vmPartyMember = ViewModelProvider(this).get(PartyMemberVM::class.java)
+        vmFillDb = ViewModelProvider(this).get(FillDbVM::class.java)
 
         binding.btnAddToDb.setOnClickListener {
             insertDataToDB()
         }
 
         binding.btnCleanDb.setOnClickListener {
-            vmPartyMember.deleteAll()
+            vmFillDb.deleteAll()
             Toast.makeText(requireContext(), "DB has been cleaned.", Toast.LENGTH_SHORT).show()
             view?.findNavController()
-                ?.navigate(R.id.action_dbHandleFragment_to_selectPartyFragment)
+                ?.navigate(R.id.action_dbHandleFragment_to_partiesFragment)
         }
 
         return binding.root
@@ -56,10 +56,10 @@ class DbHandleFragment : Fragment() {
                 it.bornYear,
                 it.constituency
             )
-            vmPartyMember.addMember(member)
+            vmFillDb.addMember(member)
         }
         Toast.makeText(requireContext(), "All the members have been added.", Toast.LENGTH_SHORT).show()
         view?.findNavController()
-            ?.navigate(R.id.action_dbHandleFragment_to_selectPartyFragment)
+            ?.navigate(R.id.action_dbHandleFragment_to_partiesFragment)
     }
 }

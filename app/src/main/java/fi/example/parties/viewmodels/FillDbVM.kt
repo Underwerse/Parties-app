@@ -8,7 +8,7 @@ import fi.example.parties.room.repositories.PartyMemberRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class PartyMemberVM(application: Application) : AndroidViewModel(application) {
+class FillDbVM(application: Application) : AndroidViewModel(application) {
     
     private val getAllMembers: LiveData<List<PartyMember>>
     private val repository: PartyMemberRepository
