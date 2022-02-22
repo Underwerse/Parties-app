@@ -19,5 +19,9 @@ class PartyMemberRepository(private val partyMemberDao: PartyMemberDao) {
             .partyMemberDao
             .deleteAll()
     }
-
+    
+    fun getPartyMemberByParty(selectedParty: String): LiveData<List<String>> {
+        return partyMemberDao.getPartyMemberByParty(selectedParty)
+    }
+    
 }

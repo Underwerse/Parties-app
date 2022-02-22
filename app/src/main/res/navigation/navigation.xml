@@ -23,25 +23,21 @@
         tools:layout="@layout/fragment_parties_list"
         >
         <action
-            android:id="@+id/action_selectPartyFragment_to_partyDetailsFragment"
-            app:destination="@id/partyDetailsFragment" />
+            android:id="@+id/action_selectPartyFragment_to_selectedPartyMembersFragment"
+            app:destination="@id/selectedPartyMembersFragment" />
     </fragment>
     <fragment
         android:id="@+id/partyDetailsFragment"
         android:name="fi.example.parties.PartyDetailsFragment"
-        android:label="Selected party's details"
+        android:label="Selected members's details"
         tools:layout="@layout/fragment_party_details"
         >
         <action
-            android:id="@+id/action_partyDetailsFragment_to_titleFragment"
-            app:destination="@id/titleFragment"
-            app:popUpTo="@id/titleFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_partyDetailsFragment_to_selectedPartyMembersFragment"
+            app:destination="@id/selectedPartyMembersFragment" />
         <action
-            android:id="@+id/action_partyDetailsFragment_to_selectPartyFragment"
-            app:destination="@id/selectPartyFragment"
-            app:popUpTo="@id/selectPartyFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_partyDetailsFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
@@ -58,5 +54,14 @@
             app:destination="@id/selectPartyFragment"
             app:popUpTo="@id/titleFragment"
             app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectedPartyMembersFragment"
+        android:name="fi.example.parties.SelectedPartyMembersFragment"
+        android:label="Select party's member"
+        tools:layout="@layout/fragment_selected_party_members" >
+        <action
+            android:id="@+id/action_selectedPartyMembersFragment_to_partyDetailsFragment"
+            app:destination="@id/partyDetailsFragment" />
     </fragment>
 </navigation>

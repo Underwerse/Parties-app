@@ -49,7 +49,7 @@ class PartyDetailsFragment : Fragment() {
         }
 
         binding.btnToBack.setOnClickListener { view : View ->
-            view.findNavController().navigate(R.id.action_partyDetailsFragment_to_selectPartyFragment)
+            view.findNavController().navigate(R.id.action_partyDetailsFragment_to_selectedPartyMembersFragment)
         }
 
         binding.btnToMain.setOnClickListener { view : View ->

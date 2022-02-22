@@ -29,7 +29,6 @@ class PartiesListFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_parties_list,container,false)
 
-
         vmPartiesList = ViewModelProvider(this).get(PartiesListVM::class.java)
 
         vmPartiesList.partiesList.observe(viewLifecycleOwner) {
@@ -40,14 +39,14 @@ class PartiesListFragment : Fragment() {
     }
 
     fun createPartiesList(partiesList: List<String>) {
-        val recyclerView: RecyclerView = binding.recyclerView
+        val recyclerView: RecyclerView = binding.recyclerViewAllParties
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = PartiesListAdapter(partiesList, object: PartyOnClickListener {
             override fun onClick(party: String) {
                 Log.d("click", "party = $party")
                 bundle.putString("selectedParty", party)
                 view?.findNavController()
-                    ?.navigate(R.id.action_selectPartyFragment_to_partyDetailsFragment, bundle)
+                    ?.navigate(R.id.action_selectPartyFragment_to_selectedPartyMembersFragment, bundle)
             }
         })
     }
