@@ -1,4 +1,4 @@
-package fi.example.parties.room
+package fi.example.parties.room.data
 
 import android.content.Context
 import androidx.room.Database

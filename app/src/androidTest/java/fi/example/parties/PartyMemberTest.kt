@@ -2,7 +2,7 @@
 //
 //import androidx.room.Room
 //import androidx.test.platform.app.InstrumentationRegistry
-//import fi.example.parties.room.DB
+//import fi.example.parties.room.data.DB
 //import fi.example.parties.room.entities.PartyMember
 //import fi.example.parties.room.entities.PartyMemberDao
 //import org.junit.After
