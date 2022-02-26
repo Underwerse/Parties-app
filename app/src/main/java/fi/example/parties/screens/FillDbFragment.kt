@@ -15,7 +15,7 @@ import fi.example.parties.databinding.FragmentDbHandleBinding
 import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.viewmodels.FillDbVM
 
-class DbHandleFragment : Fragment() {
+class FillDbFragment : Fragment() {
     private lateinit var binding: FragmentDbHandleBinding
     private lateinit var vmFillDb: FillDbVM
     private val parliamentMembers = ParliamentMembersData.members

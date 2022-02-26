@@ -17,14 +17,14 @@ import fi.example.parties.databinding.FragmentMembersBinding
 import fi.example.parties.recyclerviews.MemberOnClickListener
 import fi.example.parties.recyclerviews.MembersAdapter
 import fi.example.parties.room.entities.PartyMember
-import fi.example.parties.viewmodels.MemberVMFactory
+import fi.example.parties.viewmodels.MembersVMFactory
 import fi.example.parties.viewmodels.MembersVM
 
 class MembersFragment : Fragment() {
 	val bundle = Bundle()
 	private lateinit var binding: FragmentMembersBinding
 	private lateinit var vmMembers: MembersVM
-	private lateinit var vmMembersFactory: MemberVMFactory
+	private lateinit var vmMembersFactory: MembersVMFactory
 	private lateinit var selectedParty: String
 	
 	override fun onCreateView(inflater: LayoutInflater,
@@ -38,7 +38,7 @@ class MembersFragment : Fragment() {
 		
 		selectedParty = arguments?.getString("selectedParty") ?: ""
 		
-		vmMembersFactory = MemberVMFactory(application, selectedParty)
+		vmMembersFactory = MembersVMFactory(application, selectedParty)
 		vmMembers = ViewModelProvider(this, vmMembersFactory)
 			.get(MembersVM::class.java)
 		

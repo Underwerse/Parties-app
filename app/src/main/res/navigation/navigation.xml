@@ -49,7 +49,7 @@
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/dbHandleFragment"
-        android:name="fi.example.parties.screens.DbHandleFragment"
+        android:name="fi.example.parties.screens.FillDbFragment"
         android:label="SQLite DB handler"
         tools:layout="@layout/fragment_db_handle">
         <action
