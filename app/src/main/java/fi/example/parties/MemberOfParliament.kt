@@ -1,3 +1,4 @@
+/*
 package fi.example.parties
 
 data class MemberOfParliament (
@@ -2417,3 +2418,4 @@ object ParliamentMembersData {
         ),
     )
 }
+*/
