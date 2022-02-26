@@ -19,4 +19,11 @@
     <string name="menu_item_db">Fill DB with data</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- contentDescription strings for rating icons -->
+    <string name="quality_1">Member Rating 1</string>
+    <string name="quality_2">Member Rating 2</string>
+    <string name="quality_3">Member Rating 3</string>
+
+    <string name="what_rating">How would you rate this member?</string>
+
 </resources>

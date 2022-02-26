@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import fi.example.parties.R
@@ -71,5 +72,12 @@ class FillDbFragment : Fragment() {
             }
         }
         Toast.makeText(requireContext(), "All the members have been added.", Toast.LENGTH_SHORT).show()
+    }
+    
+    fun cleanDb() {
+        lifecycleScope.launch {
+            repository.deleteAll()
+        }
+        Toast.makeText(requireContext(), "DB has been cleaned.", Toast.LENGTH_SHORT).show()
     }
 }

@@ -22,4 +22,15 @@ class MemberInfoVM(application: Application,
         _getMemberByPersNumber = repository.getMemberByPersNumber(memberPersNumber)
         Log.d("LOG", "MemberInfoVM _getAllMembersByParty received")
     }
+    
+    fun onSetRating(quality: Int) {
+        /*viewModelScope.launch {
+            val tonight = database.get(sleepNightKey) ?: return@launch
+            tonight.sleepQuality = quality
+            database.update(tonight)
+            
+            // Setting this state variable to true will alert the observer and trigger navigation.
+            _navigateToSleepTracker.value = true
+        }*/
+    }
 }

@@ -70,7 +70,7 @@ class MembersFragment : Fragment() {
 							&& it.last == member.split(' ')[1]
 				}[0].party
 				
-				Log.d("LOG", "Member clickked: $member")
+				Log.d("LOG", "Member clicked: $member")
 				
 				bundle.putString("selectedMember", member)
 				bundle.putString("selectedParty", memberParty)
