@@ -9,15 +9,21 @@ import fi.example.parties.data.Repository
 
 class PartiesVM(application: Application
 ) : AndroidViewModel(application) {
-    private val _getAllParties: LiveData<List<String>>
+    private val _allPartiesFromDb: LiveData<List<String>>
     private val repository: Repository
-    val partiesList: LiveData<List<String>>
-        get() = _getAllParties
+    val allPartiesFromDb: LiveData<List<String>>
+        get() = _allPartiesFromDb
 
     init {
+        Log.i("LOG", "PartiesVM created")
         val partyMemberDao = DB.getInstance(application).partyMemberDao
         repository = Repository(partyMemberDao)
-        _getAllParties = repository.getAllParties
-        Log.d("LOG", "PartiesListVM: _getAllParties received")
+        _allPartiesFromDb = repository.allPartiesFromDb
+        Log.d("LOG", "PartiesVM: _allPartiesFromDb received")
+    }
+    
+    override fun onCleared() {
+        super.onCleared()
+        Log.i("LOG", "PartiesVM destroyed")
     }
 }

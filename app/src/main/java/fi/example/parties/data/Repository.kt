@@ -8,7 +8,7 @@ import fi.example.parties.room.entities.PartyMemberDao
 
 class Repository(private val partyMemberDao: PartyMemberDao) {
 
-    val getAllParties: LiveData<List<String>> = partyMemberDao.getParties()
+    val allPartiesFromDb = partyMemberDao.getParties()
 
     suspend fun addMember(member: PartyMember) {
         partyMemberDao.addMember(member)
@@ -21,11 +21,12 @@ class Repository(private val partyMemberDao: PartyMemberDao) {
     }
     
     fun getPartyMembersByParty(selectedParty: String): LiveData<List<PartyMember>> {
-        Log.d("LOG", "Repository: getPartyMemberByParty run")
+        Log.d("LOG", "Repository: getPartyMemberByParty call")
         return partyMemberDao.getPartyMembersByParty(selectedParty)
     }
     
     fun getMemberByPersNumber(personNumber: Int): LiveData<PartyMember> {
+        Log.d("LOG", "Repository: getMemberByPersNumber call")
         return partyMemberDao.getMemberByPersNumber(personNumber)
     }
 }

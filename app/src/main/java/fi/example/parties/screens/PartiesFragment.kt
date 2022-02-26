@@ -26,14 +26,15 @@ class PartiesFragment : Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
     ): View? {
+        
         binding = DataBindingUtil.inflate(inflater,
 			R.layout.fragment_parties,container,false)
 
         vmParties = ViewModelProvider(this).get(PartiesVM::class.java)
 
-        vmParties.partiesList.observe(viewLifecycleOwner) {
+        vmParties.allPartiesFromDb.observe(viewLifecycleOwner) {
+            Log.d("LOG", "PartiesFragment: allPartiesFromDb.observe call")
             createPartiesList(it)
-            Log.d("LOG", "PartiesListFragment: partiesList.observe run")
         }
 
         return binding.root
