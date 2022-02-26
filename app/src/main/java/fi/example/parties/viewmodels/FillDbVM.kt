@@ -1,7 +1,10 @@
 package fi.example.parties.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
+import fi.example.parties.MemberOfParliament
+import fi.example.parties.ParliamentMembersData
 import fi.example.parties.room.DB
 import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.data.Repository
@@ -10,24 +13,17 @@ import kotlinx.coroutines.launch
 
 class FillDbVM(application: Application) : AndroidViewModel(application) {
     
-    private val getAllMembers: LiveData<List<PartyMember>>
-    private val repository: Repository
+    private val _membersFromFile: List<MemberOfParliament>
+    val membersFromFile: List<MemberOfParliament>
+        get() = _membersFromFile
     
     init {
-        val partyMemberDao = DB.getInstance(application).partyMemberDao
-        repository = Repository(partyMemberDao)
-        getAllMembers = repository.getAllMembers
+        Log.i("LOG", "FillDbVM created")
+        _membersFromFile = ParliamentMembersData.members
     }
     
-    fun addMember(member: PartyMember) {
-        GlobalScope.launch {
-            repository.addMember(member)
-        }
-    }
-    
-    fun deleteAll() {
-        GlobalScope.launch {
-            repository.deleteAll()
-        }
+    override fun onCleared() {
+        super.onCleared()
+        Log.i("LOG", "FillDbVM destroyed")
     }
 }

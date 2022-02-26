@@ -8,7 +8,6 @@ import fi.example.parties.room.entities.PartyMemberDao
 
 class Repository(private val partyMemberDao: PartyMemberDao) {
 
-    val getAllMembers: LiveData<List<PartyMember>> = partyMemberDao.getAllMembers()
     val getAllParties: LiveData<List<String>> = partyMemberDao.getParties()
 
     suspend fun addMember(member: PartyMember) {
