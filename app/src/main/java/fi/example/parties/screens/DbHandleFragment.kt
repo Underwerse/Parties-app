@@ -1,4 +1,4 @@
-package fi.example.parties
+package fi.example.parties.screens
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import fi.example.parties.ParliamentMembersData
+import fi.example.parties.R
 import fi.example.parties.databinding.FragmentDbHandleBinding
 import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.viewmodels.FillDbVM
@@ -24,7 +26,7 @@ class DbHandleFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater,
-        R.layout.fragment_db_handle, container, false)
+			R.layout.fragment_db_handle, container, false)
 
         vmFillDb = ViewModelProvider(this).get(FillDbVM::class.java)
 

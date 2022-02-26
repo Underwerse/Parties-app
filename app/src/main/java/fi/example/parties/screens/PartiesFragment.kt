@@ -1,4 +1,4 @@
-package fi.example.parties
+package fi.example.parties.screens
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import fi.example.parties.R
 import fi.example.parties.databinding.FragmentPartiesBinding
 import fi.example.parties.recyclerviews.PartiesAdapter
 import fi.example.parties.recyclerviews.PartyOnClickListener
@@ -26,7 +27,7 @@ class PartiesFragment : Fragment() {
                               savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_parties,container,false)
+			R.layout.fragment_parties,container,false)
 
         vmParties = ViewModelProvider(this).get(PartiesVM::class.java)
 

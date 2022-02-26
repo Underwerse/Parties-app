@@ -1,4 +1,4 @@
-package fi.example.parties
+package fi.example.parties.screens
 
 import android.app.Application
 import android.os.Bundle
@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import fi.example.parties.R
 import fi.example.parties.databinding.FragmentMembersBinding
 import fi.example.parties.recyclerviews.MemberOnClickListener
 import fi.example.parties.recyclerviews.MembersAdapter

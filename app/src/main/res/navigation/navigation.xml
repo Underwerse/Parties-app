@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/titleFragment"
-        android:name="fi.example.parties.TitleFragment"
+        android:name="fi.example.parties.screens.TitleFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_title"
         >
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/PartiesFragment"
-        android:name="fi.example.parties.PartiesFragment"
+        android:name="fi.example.parties.screens.PartiesFragment"
         android:label="Select your party"
         tools:layout="@layout/fragment_parties"
         >
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/memberInfoFragment"
-        android:name="fi.example.parties.MemberInfoFragment"
+        android:name="fi.example.parties.screens.MemberInfoFragment"
         android:label="Selected members's details"
         tools:layout="@layout/fragment_member_info"
         >
@@ -44,12 +44,12 @@
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="fi.example.parties.AboutFragment"
+        android:name="fi.example.parties.screens.AboutFragment"
         android:label="About app"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/dbHandleFragment"
-        android:name="fi.example.parties.DbHandleFragment"
+        android:name="fi.example.parties.screens.DbHandleFragment"
         android:label="SQLite DB handler"
         tools:layout="@layout/fragment_db_handle">
         <action
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/membersFragment"
-        android:name="fi.example.parties.MembersFragment"
+        android:name="fi.example.parties.screens.MembersFragment"
         android:label="Select party's member"
         tools:layout="@layout/fragment_members" >
         <action

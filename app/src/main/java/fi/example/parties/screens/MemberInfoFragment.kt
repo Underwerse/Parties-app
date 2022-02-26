@@ -1,4 +1,4 @@
-package fi.example.parties
+package fi.example.parties.screens
 
 import android.app.Application
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import fi.example.parties.R
 import fi.example.parties.databinding.FragmentMemberInfoBinding
 import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.viewmodels.MemberInfoVM
@@ -25,7 +26,7 @@ class MemberInfoFragment: Fragment() {
                               savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_member_info,container,false)
+			R.layout.fragment_member_info,container,false)
     
         val application = Application()
         

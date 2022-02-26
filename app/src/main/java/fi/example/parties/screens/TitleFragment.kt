@@ -1,4 +1,4 @@
-package fi.example.parties
+package fi.example.parties.screens
 
 import android.os.Bundle
 import android.view.*
@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import fi.example.parties.R
 import fi.example.parties.databinding.FragmentTitleBinding
 
 class TitleFragment : Fragment() {

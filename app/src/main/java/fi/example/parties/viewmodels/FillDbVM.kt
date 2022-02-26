@@ -4,18 +4,18 @@ import android.app.Application
 import androidx.lifecycle.*
 import fi.example.parties.room.DB
 import fi.example.parties.room.entities.PartyMember
-import fi.example.parties.room.repositories.PartyMemberRepository
+import fi.example.parties.data.Repository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class FillDbVM(application: Application) : AndroidViewModel(application) {
     
     private val getAllMembers: LiveData<List<PartyMember>>
-    private val repository: PartyMemberRepository
+    private val repository: Repository
     
     init {
         val partyMemberDao = DB.getInstance(application).partyMemberDao
-        repository = PartyMemberRepository(partyMemberDao)
+        repository = Repository(partyMemberDao)
         getAllMembers = repository.getAllMembers
     }
     
