@@ -6,7 +6,7 @@ import fi.example.parties.room.DB
 import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.room.entities.PartyMemberDao
 
-class Repository(private val partyMemberDao: PartyMemberDao) {
+class MembersRepository(private val partyMemberDao: PartyMemberDao) {
 
     val allPartiesFromDb = partyMemberDao.getParties()
 

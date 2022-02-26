@@ -5,12 +5,19 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import fi.example.parties.MainActivity
+import fi.example.parties.room.entities.MemberRating
+import fi.example.parties.room.entities.MemberRatingDao
 import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.room.entities.PartyMemberDao
 
-@Database(entities = [PartyMember::class], version = 4, exportSchema = false)
+@Database(
+    entities = [PartyMember::class, MemberRating::class],
+    version = 5,
+    exportSchema = false
+)
 abstract class DB: RoomDatabase() {
     abstract val partyMemberDao: PartyMemberDao
+    abstract val memberRatingDao: MemberRatingDao
 
     companion object {
 

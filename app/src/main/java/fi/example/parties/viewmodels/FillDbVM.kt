@@ -5,11 +5,6 @@ import android.util.Log
 import androidx.lifecycle.*
 import fi.example.parties.MemberOfParliament
 import fi.example.parties.ParliamentMembersData
-import fi.example.parties.room.DB
-import fi.example.parties.room.entities.PartyMember
-import fi.example.parties.data.Repository
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class FillDbVM(application: Application) : AndroidViewModel(application) {
     

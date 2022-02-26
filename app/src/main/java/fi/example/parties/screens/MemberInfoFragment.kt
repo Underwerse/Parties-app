@@ -69,5 +69,6 @@ class MemberInfoFragment: Fragment() {
         binding.tvDistrict.text = "District: " + member.constituency
         binding.tvMemberTwitter.text = "Twitter: " +
                 if (member.twitter != "") member.twitter else "none"
+        binding.tvMemberRating.text = "Current rating: "
     }
 }

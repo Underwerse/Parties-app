@@ -5,20 +5,20 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import fi.example.parties.room.DB
-import fi.example.parties.data.Repository
+import fi.example.parties.data.MembersRepository
 
 class PartiesVM(application: Application
 ) : AndroidViewModel(application) {
     private val _allPartiesFromDb: LiveData<List<String>>
-    private val repository: Repository
+    private val membersRepository: MembersRepository
     val allPartiesFromDb: LiveData<List<String>>
         get() = _allPartiesFromDb
 
     init {
         Log.i("LOG", "PartiesVM created")
         val partyMemberDao = DB.getInstance(application).partyMemberDao
-        repository = Repository(partyMemberDao)
-        _allPartiesFromDb = repository.allPartiesFromDb
+        membersRepository = MembersRepository(partyMemberDao)
+        _allPartiesFromDb = membersRepository.allPartiesFromDb
         Log.d("LOG", "PartiesVM: _allPartiesFromDb received")
     }
     
