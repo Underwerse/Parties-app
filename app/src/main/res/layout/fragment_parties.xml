@@ -36,7 +36,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
-            android:text="Fill the DB and then click on the party's name you wish to get a random member from:"
+            android:text="Fill the DB and then click on the party's image you wish to get members from:"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
