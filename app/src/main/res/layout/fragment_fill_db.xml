@@ -25,28 +25,39 @@
             app:layout_constraintVertical_bias="0.17" />
 
         <Button
-            android:id="@+id/btn_add_to_db"
+            android:id="@+id/btn_fill_db_from_file"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:text="fill DB with data"
+            android:text="fill from file"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_fill_db"
-            app:layout_constraintVertical_bias="0.089" />
+            app:layout_constraintVertical_bias="0.048" />
+
+        <Button
+            android:id="@+id/btn_fill_db_from_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="fill from net"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_fill_db_from_file"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/btn_fill_db_from_file" />
 
         <Button
             android:id="@+id/btn_clean_db"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="412dp"
             android:text="clean db"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.983"
-            app:layout_constraintStart_toEndOf="@+id/btn_add_to_db"
-            app:layout_constraintTop_toBottomOf="@+id/tv_fill_db"
-            app:layout_constraintVertical_bias="0.089"/>
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_fill_db_from_network" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

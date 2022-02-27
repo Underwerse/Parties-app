@@ -38,8 +38,12 @@ class FillDbFragment : Fragment() {
         partyMemberDao = DB.getInstance(requireContext()).partyMemberDao
         membersRepository = MembersRepository(partyMemberDao)
         
-        binding.btnAddToDb.setOnClickListener {
+        binding.btnFillDbFromFile.setOnClickListener {
             insertDataToDB()
+        }
+        
+        binding.btnFillDbFromNetwork.setOnClickListener {
+            insertDataToDBFromNetwork()
         }
 
         binding.btnCleanDb.setOnClickListener {
@@ -70,6 +74,27 @@ class FillDbFragment : Fragment() {
                 membersRepository.addMember(member)
             }
         }
-        Toast.makeText(requireContext(), "All the members have been added.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "All the members from file have been added.", Toast.LENGTH_SHORT).show()
+    }
+    
+    private fun insertDataToDBFromNetwork() {
+        (vmFillDb.membersFromNetwork.value)?.forEach {
+            val member = PartyMember(
+                it.personNumber,
+                it.seatNumber,
+                it.last,
+                it.first,
+                it.party,
+                it.minister,
+                it.picture,
+                it.twitter,
+                it.bornYear,
+                it.constituency
+            )
+            GlobalScope.launch {
+                membersRepository.addMember(member)
+            }
+        }
+        Toast.makeText(requireContext(), "All the members from API have been added.", Toast.LENGTH_SHORT).show()
     }
 }
