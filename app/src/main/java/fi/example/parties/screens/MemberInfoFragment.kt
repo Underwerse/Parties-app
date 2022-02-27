@@ -38,9 +38,14 @@ class MemberInfoFragment: Fragment() {
         vmMemberInfoFactory = MemberInfoVMFactory(application, selectedMemberPersNumber)
         vmMemberInfo = ViewModelProvider(this, vmMemberInfoFactory)
             .get(MemberInfoVM::class.java)
+        binding.memberInfoVM = vmMemberInfo
         
         vmMemberInfo.memberByPersNumber.observe(viewLifecycleOwner) {
             updateMemberData(it)
+        }
+        
+        vmMemberInfo.memberRating.observe(viewLifecycleOwner) {
+            binding.tvMemberRating.text = "Current rating: ${it?.toString() ?: "none"}"
         }
 
         binding.btnRandom.setOnClickListener { view : View ->
@@ -69,6 +74,5 @@ class MemberInfoFragment: Fragment() {
         binding.tvDistrict.text = "District: " + member.constituency
         binding.tvMemberTwitter.text = "Twitter: " +
                 if (member.twitter != "") member.twitter else "none"
-        binding.tvMemberRating.text = "Current rating: "
     }
 }

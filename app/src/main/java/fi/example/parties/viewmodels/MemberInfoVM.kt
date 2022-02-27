@@ -2,30 +2,37 @@ package fi.example.parties.viewmodels
 
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import fi.example.parties.room.DB
-import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.data.MembersRepository
 import fi.example.parties.data.RatingsRepository
+import fi.example.parties.room.DB
+import fi.example.parties.room.entities.MemberRating
+import fi.example.parties.room.entities.PartyMember
 import kotlinx.coroutines.launch
 
 class MemberInfoVM(application: Application,
                    memberPersNumber: Int
 ): AndroidViewModel(application) {
+    private val personNumber: Int
     private val _getMemberByPersNumber: LiveData<PartyMember>
     private val _getRatingByPersNumber: LiveData<Int>
     private val membersRepository: MembersRepository
     private val ratingsRepository: RatingsRepository
+    
     val memberByPersNumber: LiveData<PartyMember>
         get() = _getMemberByPersNumber
-    val getRatingByPersNumber: LiveData<Int>
+    val memberRating: LiveData<Int>
         get() = _getRatingByPersNumber
     
     init {
         val partyMemberDao = DB.getInstance(application).partyMemberDao
         val memberRatingDao = DB.getInstance(application).memberRatingDao
+        personNumber = memberPersNumber
+        
         membersRepository = MembersRepository(partyMemberDao)
         ratingsRepository = RatingsRepository(memberRatingDao)
         _getMemberByPersNumber = membersRepository.getMemberByPersNumber(memberPersNumber)
@@ -34,8 +41,9 @@ class MemberInfoVM(application: Application,
     }
     
     fun onSetRating(rating: Int) {
-        viewModelScope.launch {
+            val ratingObj = MemberRating(personNumber, rating)
+            viewModelScope.launch {
+                ratingsRepository.setRating(ratingObj)
         }
-        
     }
 }

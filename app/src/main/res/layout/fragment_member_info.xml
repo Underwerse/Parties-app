@@ -159,18 +159,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_member_rating"
             app:layout_constraintVertical_bias="0.058"
-            app:srcCompat="@drawable/party" />
-
-        <ImageView
-            android:id="@+id/rating_two_image"
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="@dimen/icon_size"
-            android:contentDescription="@string/quality_2"
-            android:onClick="@{() -> memberInfoVM.onSetRating(2)}"
-            app:layout_constraintBottom_toBottomOf="@+id/rating_one_image"
-            app:layout_constraintEnd_toStartOf="@+id/rating_three_image"
-            app:layout_constraintStart_toEndOf="@+id/rating_one_image"
-            app:srcCompat="@drawable/ic_rating_2" />
+            app:srcCompat="@drawable/party"/>
 
         <TextView
             android:id="@+id/tv_rating"
@@ -198,6 +187,17 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_rating"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_rating_1" />
+
+        <ImageView
+            android:id="@+id/rating_two_image"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:contentDescription="@string/quality_2"
+            android:onClick="@{() -> memberInfoVM.onSetRating(2)}"
+            app:layout_constraintBottom_toBottomOf="@+id/rating_one_image"
+            app:layout_constraintEnd_toStartOf="@+id/rating_three_image"
+            app:layout_constraintStart_toEndOf="@+id/rating_one_image"
+            app:srcCompat="@drawable/ic_rating_2" />
 
         <ImageView
             android:id="@+id/rating_three_image"
