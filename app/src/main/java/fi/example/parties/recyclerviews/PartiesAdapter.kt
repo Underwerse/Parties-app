@@ -30,7 +30,7 @@ class PartiesAdapter(private val parties : List<String>, private val onClickList
 
     override fun onBindViewHolder(holder: PartiesViewHolder, position: Int) {
         val party = parties[position]
-        holder.partyName.text = party
+        holder.partyName.text = getPartyFullName(party)
         holder.partyImage.setImageResource(getDrawableResourse(party))
         holder.partyImage.setOnClickListener {
             onClickListener.onClick(party)
@@ -44,7 +44,6 @@ class PartiesAdapter(private val parties : List<String>, private val onClickList
             "kd" -> R.drawable.kd
             "kesk" -> R.drawable.kesk
             "kok" -> R.drawable.kok
-            "politics" -> R.drawable.politics
             "ps" -> R.drawable.ps
             "r" -> R.drawable.r
             "sd" -> R.drawable.sd
@@ -54,5 +53,21 @@ class PartiesAdapter(private val parties : List<String>, private val onClickList
         }
         
         return drawableResource
+    }
+    
+    private fun getPartyFullName(shortName: String): String {
+        val fullName = when (shortName) {
+            "kd" -> "Christian Democrat"
+            "kesk" -> "Centre"
+            "kok" -> "National Coalition"
+            "ps" -> "Finns"
+            "r" -> "Swedish People's"
+            "sd" -> "Social Democratic"
+            "vas" -> "Left Alliance"
+            "vihr" -> "Green League"
+            else -> "Movement Now"
+        }
+        
+        return fullName
     }
 }
