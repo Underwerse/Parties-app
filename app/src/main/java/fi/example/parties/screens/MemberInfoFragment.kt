@@ -45,7 +45,7 @@ class MemberInfoFragment: Fragment() {
         }
         
         vmMemberInfo.memberRating.observe(viewLifecycleOwner) {
-            binding.tvMemberRating.text = "Current rating: ${it?.toString() ?: "none"}"
+            binding.tvMemberRating.text = "Current rating: ${it?.toString() ?: "none"}/3"
         }
 
         binding.btnRandom.setOnClickListener { view : View ->
