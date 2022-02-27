@@ -49,7 +49,7 @@ class PartiesAdapter(private val parties : List<String>, private val onClickList
             "sd" -> R.drawable.sd
             "vas" -> R.drawable.vas
             "vihr" -> R.drawable.vihr
-            else -> R.drawable.party
+            else -> R.drawable.politics
         }
         
         return drawableResource

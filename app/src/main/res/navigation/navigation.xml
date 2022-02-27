@@ -37,7 +37,9 @@
             android:defaultValue="" />
         <action
             android:id="@+id/action_memberInfoFragment_to_membersFragment"
-            app:destination="@id/membersFragment" />
+            app:destination="@id/membersFragment"
+            app:popUpTo="@id/membersFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_memberInfoFragment_to_titleFragment"
             app:destination="@id/titleFragment" />
