@@ -20,6 +20,7 @@ class MemberInfoVM(application: Application,
     private val personNumber: Int
     private val _getMemberByPersNumber: LiveData<PartyMember>
     private val _getRatingByPersNumber: LiveData<Int>
+    private val _getRatingObjByPersNumber: LiveData<MemberRating>
     private val membersRepository: MembersRepository
     private val ratingsRepository: RatingsRepository
     
@@ -27,6 +28,8 @@ class MemberInfoVM(application: Application,
         get() = _getMemberByPersNumber
     val memberRating: LiveData<Int>
         get() = _getRatingByPersNumber
+    val memberRatingObj: LiveData<MemberRating>
+        get() = _getRatingObjByPersNumber
     
     init {
         val partyMemberDao = DB.getInstance(application).partyMemberDao
@@ -37,13 +40,28 @@ class MemberInfoVM(application: Application,
         ratingsRepository = RatingsRepository(memberRatingDao)
         _getMemberByPersNumber = membersRepository.getMemberByPersNumber(memberPersNumber)
         _getRatingByPersNumber = ratingsRepository.getRating(memberPersNumber)
+        _getRatingObjByPersNumber = ratingsRepository.getRatingObj(memberPersNumber)
         Log.d("LOG", "MemberInfoVM _getAllMembersByParty received")
     }
     
     fun onSetRating(rating: Int) {
-            val ratingObj = MemberRating(personNumber, rating)
+            val ratingObj = MemberRating(personNumber, rating, "")
             viewModelScope.launch {
                 ratingsRepository.setRating(ratingObj)
+        }
+    }
+    
+    fun onSetNote(note: String) {
+        val ratingObj = memberRating.value?.let {
+            MemberRating(
+                personNumber = personNumber,
+                rating = it,
+                note = note)
+        }
+        viewModelScope.launch {
+            if (ratingObj != null) {
+                ratingsRepository.setRating(ratingObj)
+            }
         }
     }
 }

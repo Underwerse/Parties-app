@@ -12,7 +12,7 @@ import fi.example.parties.room.entities.PartyMemberDao
 
 @Database(
     entities = [PartyMember::class, MemberRating::class],
-    version = 5,
+    version = 6,
     exportSchema = false
 )
 abstract class DB: RoomDatabase() {

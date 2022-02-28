@@ -6,5 +6,6 @@ import androidx.room.*
 data class MemberRating (
     @PrimaryKey
     val personNumber: Int,
-    val rating: Int
+    val rating: Int,
+    val note: String
 )

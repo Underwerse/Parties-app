@@ -47,6 +47,8 @@ class MemberInfoFragment: Fragment() {
         vmMemberInfo.memberRating.observe(viewLifecycleOwner) {
             binding.tvMemberRating.text = "Current rating: ${it?.toString() ?: "none"}/3"
         }
+        
+        vmMemberInfo
 
         binding.btnRandom.setOnClickListener { view : View ->
 //            vmPartyMember.setMember()
@@ -69,8 +71,8 @@ class MemberInfoFragment: Fragment() {
         val imgResName = "@drawable/" + member.party
         val imageID = resources.getIdentifier(imgResName, "drawable", activity?.getPackageName())
         binding.imgParty.setImageResource(imageID)
-        binding.tvMemberName.text = member.last + ", " + member.first
-        binding.tvMemberBirthYear.text = "Borned in " + member.bornYear.toString()
+        binding.tvMemberName.text = member.last + ", " + member.first + ", " + member.bornYear
+//        binding.tvMemberBirthYear.text = "Borned in " + member.bornYear.toString()
         binding.tvDistrict.text = "District: " + member.constituency
         binding.tvMemberTwitter.text = "Twitter: " +
                 if (member.twitter != "") member.twitter else "none"

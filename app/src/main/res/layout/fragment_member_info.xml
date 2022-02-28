@@ -75,6 +75,7 @@
             android:gravity="left"
             android:text=""
             android:textSize="@dimen/text_size_middle"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -92,35 +93,53 @@
             android:gravity="left"
             android:text=""
             android:textSize="@dimen/text_size_middle"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_member_twitter"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_member_twitter" />
+
+        <ScrollView
+            android:id="@+id/scroll_note"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_member_rating">
+
+            <TextView
+                android:id="@+id/tv_note"
+                style="@style/about_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingLeft="8dp"
+                android:paddingTop="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/about"
+                android:textSize="@dimen/text_size_small" />
+        </ScrollView>
 
         <Button
             android:id="@+id/btn_to_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
             android:text="Back"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_member_rating" />
+            app:layout_constraintTop_toTopOf="@+id/img_member" />
 
         <Button
             android:id="@+id/btn_to_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
             android:text="home"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_to_back"
-            app:layout_constraintVertical_bias="0.025" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_to_back" />
 
         <Button
             android:id="@+id/btn_random"
@@ -146,24 +165,31 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="32dp"
-            android:layout_marginEnd="144dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_to_back"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_member_rating"
-            app:layout_constraintVertical_bias="0.058"
-            app:srcCompat="@drawable/party"/>
+            app:layout_constraintTop_toBottomOf="@+id/scroll_note"
+            app:srcCompat="@drawable/party" />
+
+        <ImageView
+            android:id="@+id/img_member"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_party"
+            app:layout_constraintStart_toEndOf="@+id/img_party"
+            app:layout_constraintTop_toTopOf="@+id/img_party"
+            app:srcCompat="@drawable/party" />
 
         <TextView
             android:id="@+id/tv_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
             android:text="@string/what_rating"
-            android:textSize="@dimen/title_text_size"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_party" />
 
@@ -171,15 +197,11 @@
             android:id="@+id/rating_one_image"
             android:layout_width="@dimen/icon_size"
             android:layout_height="@dimen/icon_size"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="32dp"
             android:contentDescription="@string/quality_1"
             android:onClick="@{() -> memberInfoVM.onSetRating(1)}"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/rating_two_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_rating"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tv_rating"
+            app:layout_constraintTop_toTopOf="@+id/tv_rating"
             app:srcCompat="@drawable/ic_rating_1" />
 
         <ImageView
@@ -204,6 +226,33 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rating_two_image"
             app:srcCompat="@drawable/ic_rating_3" />
+
+        <EditText
+            android:id="@+id/et_note"
+            android:layout_width="240dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="@string/note_rating"
+            android:inputType="textMultiLine"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rating_one_image"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btn_send_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Save note"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/et_note"
+            app:layout_constraintTop_toTopOf="@+id/et_note" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

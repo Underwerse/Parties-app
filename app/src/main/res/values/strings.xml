@@ -24,6 +24,7 @@
     <string name="quality_2">Member Rating 2</string>
     <string name="quality_3">Member Rating 3</string>
 
-    <string name="what_rating">How would you rate this member?</string>
+    <string name="what_rating">Give your rate</string>
+    <string name="note_rating">Write your note here</string>
 
 </resources>

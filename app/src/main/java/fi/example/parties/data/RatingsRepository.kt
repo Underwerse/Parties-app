@@ -10,20 +10,17 @@ import fi.example.parties.room.entities.PartyMemberDao
 
 class RatingsRepository(private val memberRatingDao: MemberRatingDao) {
 
-    val allRatingsFromDb = memberRatingDao.getAllRatings()
-
     suspend fun setRating(rating: MemberRating) {
         memberRatingDao.setRating(rating)
     }
-
-    /*suspend fun deleteAll() {
-        DB.getInstance()
-            .partyMemberDao
-            .deleteAll()
-    }*/
     
     fun getRating(personNumber: Int): LiveData<Int> {
         Log.d("LOG", "Repository: getMemberByPersNumber call")
         return memberRatingDao.getRating(personNumber)
+    }
+    
+    fun getRatingObj(personNumber: Int): LiveData<MemberRating> {
+        Log.d("LOG", "Repository: getMemberByPersNumber call")
+        return memberRatingDao.getRatingObj(personNumber)
     }
 }
