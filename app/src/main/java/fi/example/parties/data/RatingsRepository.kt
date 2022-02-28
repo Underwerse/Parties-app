@@ -20,7 +20,6 @@ class RatingsRepository(private val memberRatingDao: MemberRatingDao) {
     }
     
     fun getRatingObj(personNumber: Int): LiveData<MemberRating> {
-        Log.d("LOG", "Repository: getMemberByPersNumber call")
         return memberRatingDao.getRatingObj(personNumber)
     }
 }

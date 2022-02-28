@@ -41,6 +41,8 @@ class MemberInfoVM(application: Application,
         _getMemberByPersNumber = membersRepository.getMemberByPersNumber(memberPersNumber)
         _getRatingByPersNumber = ratingsRepository.getRating(memberPersNumber)
         _getRatingObjByPersNumber = ratingsRepository.getRatingObj(memberPersNumber)
+        
+        Log.d("LOG", "RatingObj: ${_getRatingObjByPersNumber.value}")
         Log.d("LOG", "MemberInfoVM _getAllMembersByParty received")
     }
     

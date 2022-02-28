@@ -7,5 +7,5 @@ data class MemberRating (
     @PrimaryKey
     val personNumber: Int,
     val rating: Int,
-    val note: String
+    val note: String = "No notes"
 )
