@@ -2,6 +2,7 @@ package fi.example.parties.screens
 
 import android.app.Application
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +40,7 @@ class MemberInfoFragment: Fragment() {
         vmMemberInfo = ViewModelProvider(this, vmMemberInfoFactory)
             .get(MemberInfoVM::class.java)
         binding.memberInfoVM = vmMemberInfo
+        binding.tvNote.movementMethod = ScrollingMovementMethod()
         
         vmMemberInfo.memberByPersNumber.observe(viewLifecycleOwner) {
             updateMemberData(it)

@@ -9,6 +9,12 @@
             type="fi.example.parties.viewmodels.MemberInfoVM" />
     </data>
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#fcf5eb"
+        android:fitsSystemWindows="true" >
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -96,31 +102,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_member_twitter" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_member_twitter"
+            android:scrollbars = "vertical"/>
 
-        <ScrollView
-            android:id="@+id/scroll_note"
+        <TextView
+            android:id="@+id/tv_note"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:lineSpacingMultiplier="1.2"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:text=""
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_member_rating">
-
-            <TextView
-                android:id="@+id/tv_note"
-                style="@style/about_style"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lineSpacingMultiplier="1.2"
-                android:paddingLeft="8dp"
-                android:paddingTop="8dp"
-                android:paddingRight="8dp"
-                android:text="@string/about"
-                android:textSize="@dimen/text_size_small" />
-        </ScrollView>
+            app:layout_constraintTop_toBottomOf="@+id/tv_member_rating"
+            android:scrollbars="vertical"/>
 
         <Button
             android:id="@+id/btn_to_back"
@@ -165,9 +166,9 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scroll_note"
+            app:layout_constraintTop_toBottomOf="@+id/tv_note"
             app:srcCompat="@drawable/party" />
 
         <ImageView
@@ -229,7 +230,7 @@
 
         <EditText
             android:id="@+id/et_note"
-            android:layout_width="240dp"
+            android:layout_width="200dp"
             android:layout_height="60dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
@@ -255,4 +256,5 @@
             app:layout_constraintTop_toTopOf="@+id/et_note" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
