@@ -49,18 +49,14 @@ class MemberInfoFragment: Fragment() {
         vmMemberInfo.memberRating.observe(viewLifecycleOwner) {
             binding.tvMemberRating.text = "Current rating: ${it?.toString() ?: "none"}/3"
         }
-        
-        binding.btnSendNote.setOnClickListener {
-            val note = binding.etNote.text
-            vmMemberInfo.onSetNote(note.toString())
-        }
-        
+    
         vmMemberInfo.memberRatingObj.observe(viewLifecycleOwner) {
             binding.tvNote.text = it?.note ?: ""
         }
-
-        binding.btnRandom.setOnClickListener { view : View ->
-//            vmPartyMember.setMember()
+    
+        binding.btnSendNote.setOnClickListener {
+            val note = binding.etNote.text
+            vmMemberInfo.onSetNote(note.toString())
         }
 
         binding.btnToBack.setOnClickListener { view : View ->
