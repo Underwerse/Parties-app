@@ -45,9 +45,9 @@ class MemberInfoVM(application: Application,
     
     fun onSetRating(rating: Int) {
         val currentNote = (memberRatingObj.value)?.note ?: ""
-            val ratingObj = MemberRating(personNumber, rating, currentNote)
-            viewModelScope.launch {
-                ratingsRepository.setRating(ratingObj)
+        val ratingObj = MemberRating(personNumber, rating, currentNote)
+        viewModelScope.launch {
+            ratingsRepository.setRating(ratingObj)
         }
     }
     
