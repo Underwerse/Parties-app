@@ -1,5 +1,6 @@
 package fi.example.parties.data
 
+import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.LiveData
 import fi.example.parties.room.DB
@@ -12,6 +13,10 @@ class MembersRepository(private val partyMemberDao: PartyMemberDao) {
     suspend fun addMember(member: PartyMember) {
         partyMemberDao.addMember(member)
     }
+    
+//    suspend fun updateImage(persNumber: Int, image: Bitmap) {
+//        partyMemberDao.updateImage(persNumber, image)
+//    }
 
     suspend fun deleteAll() {
         DB.getInstance()

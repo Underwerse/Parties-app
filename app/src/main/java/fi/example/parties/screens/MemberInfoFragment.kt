@@ -1,26 +1,44 @@
 package fi.example.parties.screens
 
 import android.app.Application
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.media.ImageReader
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
+import coil.ImageLoader
+import coil.load
+import coil.request.ImageRequest
+import coil.request.SuccessResult
 import fi.example.parties.R
+import fi.example.parties.data.ImagesRepository
 import fi.example.parties.databinding.FragmentMemberInfoBinding
+import fi.example.parties.room.DB
+import fi.example.parties.room.entities.Image
+import fi.example.parties.room.entities.ImageDao
 import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.viewmodels.MemberInfoVM
 import fi.example.parties.viewmodels.MemberInfoVMFactory
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MemberInfoFragment: Fragment() {
     val bundle = Bundle()
     private lateinit var binding: FragmentMemberInfoBinding
     private lateinit var vmMemberInfo: MemberInfoVM
     private lateinit var vmMemberInfoFactory: MemberInfoVMFactory
+    private lateinit var imagesRepository: ImagesRepository
+    private lateinit var imageDao: ImageDao
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -39,6 +57,8 @@ class MemberInfoFragment: Fragment() {
         vmMemberInfoFactory = MemberInfoVMFactory(application, selectedMemberPersNumber)
         vmMemberInfo = ViewModelProvider(this, vmMemberInfoFactory)
             .get(MemberInfoVM::class.java)
+        imageDao = DB.getInstance(requireContext()).imageDao
+        imagesRepository = ImagesRepository(imageDao)
         binding.memberInfoVM = vmMemberInfo
         binding.tvNote.movementMethod = ScrollingMovementMethod()
         
@@ -53,7 +73,18 @@ class MemberInfoFragment: Fragment() {
         vmMemberInfo.memberRatingObj.observe(viewLifecycleOwner) {
             binding.tvNote.text = it?.note ?: ""
         }
-    
+        
+        /*vmMemberInfo.image.observe(viewLifecycleOwner) {
+            Log.d("LOG", "bitmap observe: $it")
+            binding.imgMember.setImageBitmap(it)
+            if (it != null) {
+                vmMemberInfo
+                    .memberByPersNumber.value
+                    ?.let { it1 -> insertImage(it1.personNumber, it) }
+            }
+        }*/
+//        binding.imgMember.setImageBitmap(vmMemberInfo.image.value)
+        
         binding.btnSendNote.setOnClickListener {
             val note = binding.etNote.text
             vmMemberInfo.onSetNote(note.toString())
@@ -77,9 +108,35 @@ class MemberInfoFragment: Fragment() {
         val imageID = resources.getIdentifier(imgResName, "drawable", activity?.getPackageName())
         binding.imgParty.setImageResource(imageID)
         binding.tvMemberName.text = member.last + ", " + member.first + ", " + member.bornYear
+        // TODO #2 Remove birth year tails
 //        binding.tvMemberBirthYear.text = "Borned in " + member.bornYear.toString()
         binding.tvDistrict.text = "District: " + member.constituency
-        binding.tvMemberTwitter.text = "Twitter: " +
-                if (member.twitter != "") member.twitter else "none"
+        binding.tvMemberTwitter.text =
+            "Twitter: " + if (member.twitter != "") member.twitter else "none"
+        GlobalScope.launch {
+            insertImage(member.personNumber, getBitmap(member.picture))
+            binding.imgMember.load(getBitmap(member.picture))
+        }
+    }
+    
+    private fun insertImage(persNumber: Int, image: Bitmap) {
+        GlobalScope.launch {
+            imagesRepository.setImage(
+                Image(
+                persNumber, image
+            )
+            )
+        }
+    }
+    
+    private suspend fun getBitmap(imageUrl: String): Bitmap {
+        val BASE_URI = "https://avoindata.eduskunta.fi/"
+        val loading = ImageLoader(requireContext())
+        val request = ImageRequest.Builder(requireContext())
+            .data(BASE_URI + imageUrl)
+            .build()
+        
+        val result = (loading.execute(request) as SuccessResult).drawable
+        return (result as BitmapDrawable).bitmap
     }
 }

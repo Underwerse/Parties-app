@@ -1,6 +1,7 @@
 package fi.example.parties.room.entities
 
-import androidx.room.*
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "party_members_table")
 data class PartyMember (

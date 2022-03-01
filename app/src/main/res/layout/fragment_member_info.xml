@@ -177,8 +177,7 @@
             android:layout_marginStart="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/img_party"
             app:layout_constraintStart_toEndOf="@+id/img_party"
-            app:layout_constraintTop_toTopOf="@+id/img_party"
-            app:srcCompat="@drawable/party" />
+            app:layout_constraintTop_toTopOf="@+id/img_party" />
 
         <TextView
             android:id="@+id/tv_rating"

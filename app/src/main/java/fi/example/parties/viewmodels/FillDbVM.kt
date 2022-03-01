@@ -44,7 +44,6 @@ class FillDbVM(application: Application) : AndroidViewModel(application) {
             	_membersFromNetwork.postValue(MembersApi.RETROFIT_SERVICE_MEMBERS.getMembers())
                 _status.postValue(MembersApiStatus.DONE)
                 Log.d("LOG", "Getting members from API done")
-                Log.d("LOG", "Members from API: ${(membersFromNetwork.value)?.size}")
             } catch (e: Exception) {
                 _status.postValue(MembersApiStatus.ERROR)
                 _membersFromNetwork.postValue(ArrayList())

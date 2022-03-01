@@ -4,20 +4,25 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import fi.example.parties.MainActivity
 import fi.example.parties.room.entities.MemberRating
 import fi.example.parties.room.entities.MemberRatingDao
 import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.room.entities.PartyMemberDao
+import fi.example.parties.room.entities.Image
+import fi.example.parties.room.entities.ImageDao
 
 @Database(
-    entities = [PartyMember::class, MemberRating::class],
-    version = 6,
+    entities = [PartyMember::class, MemberRating::class, Image::class],
+    version = 5,
     exportSchema = false
 )
+@TypeConverters(ImageConverter::class)
 abstract class DB: RoomDatabase() {
     abstract val partyMemberDao: PartyMemberDao
     abstract val memberRatingDao: MemberRatingDao
+    abstract val imageDao: ImageDao
 
     companion object {
 
