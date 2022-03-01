@@ -52,33 +52,35 @@ class MemberInfoVM(application: Application,
         imagesRepository = ImagesRepository(imageDao)
         
         personNumber = memberPersNumber
-        _getMember = membersRepository.getMemberByPersNumber(personNumber)
+        _getMember = membersRepository.getMemberByPersNumber(memberPersNumber)
         _imageUrl = _getMember.value?.picture ?: ""
-        _getRating = ratingsRepository.getRating(personNumber)
-        _getRatingObj = ratingsRepository.getRatingObj(personNumber)
+        _getRating = ratingsRepository.getRating(memberPersNumber)
+        _getRatingObj = ratingsRepository.getRatingObj(memberPersNumber)
         getBitmap(_imageUrl)
+    }
+    
+    fun processRating(ratingObject: MemberRating) {
+        viewModelScope.launch {
+            ratingsRepository.setRating(ratingObject)
+        }
     }
     
     fun onSetRating(rating: Int) {
         val currentNote = (memberRatingObj.value)?.note ?: ""
-        val ratingObj = MemberRating(personNumber, rating, currentNote)
-        viewModelScope.launch {
-            ratingsRepository.setRating(ratingObj)
-        }
+        val ratingObj = MemberRating(
+            personNumber,
+            rating,
+            currentNote)
+        processRating(ratingObj)
     }
     
     fun onSetNote(note: String) {
-        val ratingObj = memberRating.value?.let {
-            MemberRating(
-                personNumber = personNumber,
-                rating = it,
-                note = note)
-        }
-        viewModelScope.launch {
-            if (ratingObj != null) {
-                ratingsRepository.setRating(ratingObj)
-            }
-        }
+        val currentRating = memberRatingObj.value?.rating ?: 0
+        val ratingObj = MemberRating(
+                personNumber,
+                currentRating,
+                note)
+        processRating(ratingObj)
     }
     
     fun getBitmap(imageUrl: String) {

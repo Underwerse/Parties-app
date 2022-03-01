@@ -74,17 +74,6 @@ class MemberInfoFragment: Fragment() {
             binding.tvNote.text = it?.note ?: ""
         }
         
-        /*vmMemberInfo.image.observe(viewLifecycleOwner) {
-            Log.d("LOG", "bitmap observe: $it")
-            binding.imgMember.setImageBitmap(it)
-            if (it != null) {
-                vmMemberInfo
-                    .memberByPersNumber.value
-                    ?.let { it1 -> insertImage(it1.personNumber, it) }
-            }
-        }*/
-//        binding.imgMember.setImageBitmap(vmMemberInfo.image.value)
-        
         binding.btnSendNote.setOnClickListener {
             val note = binding.etNote.text
             vmMemberInfo.onSetNote(note.toString())
