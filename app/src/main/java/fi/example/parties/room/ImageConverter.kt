@@ -5,6 +5,10 @@ import android.graphics.BitmapFactory
 import androidx.room.TypeConverter
 import java.io.ByteArrayOutputStream
 
+/**
+ * Converters Bitmap to ByteArray and vise versa
+ * while working with members' images and SQLite
+ */
 class ImageConverter {
 
 	@TypeConverter

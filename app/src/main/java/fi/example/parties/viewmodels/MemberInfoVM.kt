@@ -1,26 +1,20 @@
 package fi.example.parties.viewmodels
 
 import android.app.Application
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import coil.ImageLoader
-import coil.request.ImageRequest
-import coil.request.SuccessResult
 import fi.example.parties.data.ImagesRepository
 import fi.example.parties.data.MembersRepository
 import fi.example.parties.data.RatingsRepository
 import fi.example.parties.room.DB
-import fi.example.parties.room.entities.Image
 import fi.example.parties.room.entities.MemberRating
 import fi.example.parties.room.entities.PartyMember
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel for MemberInfo View
+ */
 class MemberInfoVM(application: Application,
                    memberPersNumber: Int
 ): AndroidViewModel(application) {
@@ -29,7 +23,6 @@ class MemberInfoVM(application: Application,
     private val _getMember: LiveData<PartyMember>
     private val _getRating: LiveData<Int>
     private val _getRatingObj: LiveData<MemberRating>
-    private val _getBitmap = MutableLiveData<Bitmap?>()
     private val membersRepository: MembersRepository
     private val ratingsRepository: RatingsRepository
     private val imagesRepository: ImagesRepository
@@ -40,8 +33,6 @@ class MemberInfoVM(application: Application,
         get() = _getRating
     val memberRatingObj: LiveData<MemberRating>
         get() = _getRatingObj
-    val bitmap: LiveData<Bitmap?>
-        get() = _getBitmap
     
     init {
         val partyMemberDao = DB.getInstance(application).partyMemberDao
@@ -51,20 +42,25 @@ class MemberInfoVM(application: Application,
         ratingsRepository = RatingsRepository(memberRatingDao)
         imagesRepository = ImagesRepository(imageDao)
         
-        personNumber = memberPersNumber
+        personNumber = memberPersNumber // variable for using in separate methods below
         _getMember = membersRepository.getMemberByPersNumber(memberPersNumber)
         _imageUrl = _getMember.value?.picture ?: ""
         _getRating = ratingsRepository.getRating(memberPersNumber)
         _getRatingObj = ratingsRepository.getRatingObj(memberPersNumber)
-        getBitmap(_imageUrl)
     }
     
+    /**
+     * Sets (updates) rating in the DB
+     */
     fun processRating(ratingObject: MemberRating) {
         viewModelScope.launch {
             ratingsRepository.setRating(ratingObject)
         }
     }
     
+    /**
+     * Updates rating in DB, saving current note
+     */
     fun onSetRating(rating: Int) {
         val currentNote = (memberRatingObj.value)?.note ?: ""
         val ratingObj = MemberRating(
@@ -74,6 +70,9 @@ class MemberInfoVM(application: Application,
         processRating(ratingObj)
     }
     
+    /**
+     * Puts note into DB (by btn click in View), saving current rating
+     */
     fun onSetNote(note: String) {
         val currentRating = memberRatingObj.value?.rating ?: 0
         val ratingObj = MemberRating(
@@ -81,24 +80,5 @@ class MemberInfoVM(application: Application,
                 currentRating,
                 note)
         processRating(ratingObj)
-    }
-    
-    fun getBitmap(imageUrl: String) {
-        val BASE_URI = "https://avoindata.eduskunta.fi/"
-
-        GlobalScope.launch {
-            try {
-                val loading = ImageLoader(getApplication())
-                val request = ImageRequest.Builder(getApplication())
-                    .data(BASE_URI + imageUrl)
-                    .build()
-    
-                val result = (loading.execute(request) as SuccessResult).drawable
-                _getBitmap.postValue((result as BitmapDrawable).bitmap)
-                Log.d("LOG", "bitmap got: ${result.bitmap}")
-            } catch (e: Exception) {
-                _getBitmap.postValue(null)
-            }
-        }
     }
 }

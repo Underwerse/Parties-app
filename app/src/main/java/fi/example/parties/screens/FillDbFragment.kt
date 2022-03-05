@@ -19,6 +19,9 @@ import fi.example.parties.viewmodels.FillDbVM
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+/**
+ * Fragment for working with the DB: fill with data or clean
+ */
 class FillDbFragment : Fragment() {
     private lateinit var binding: FragmentFillDbBinding
     private lateinit var vmFillDb: FillDbVM
@@ -28,7 +31,7 @@ class FillDbFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         
         binding = DataBindingUtil.inflate(inflater,
 			R.layout.fragment_fill_db, container, false)
@@ -55,7 +58,10 @@ class FillDbFragment : Fragment() {
 
         return binding.root
     }
-
+    
+    /**
+     * Inserts all parliament members into DB got from local file
+     */
     private fun insertDataToDB() {
         vmFillDb.membersFromFile.forEach {
             val member = PartyMember(
@@ -77,6 +83,9 @@ class FillDbFragment : Fragment() {
         Toast.makeText(requireContext(), "All the members from file have been added.", Toast.LENGTH_SHORT).show()
     }
     
+    /**
+     * Inserts all parliament members into DB got from network
+     */
     private fun insertDataToDBFromNetwork() {
         (vmFillDb.membersFromNetwork.value)?.forEach {
             val member = PartyMember(
@@ -95,6 +104,6 @@ class FillDbFragment : Fragment() {
                 membersRepository.addMember(member)
             }
         }
-        Toast.makeText(requireContext(), "All the members from API have been added.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "All the members from network have been added.", Toast.LENGTH_SHORT).show()
     }
 }

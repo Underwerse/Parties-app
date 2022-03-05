@@ -2,7 +2,6 @@ package fi.example.parties.screens
 
 import android.app.Application
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +19,9 @@ import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.viewmodels.MembersVMFactory
 import fi.example.parties.viewmodels.MembersVM
 
+/**
+ * Fragment for selected by party's name members list's data screen
+ */
 class MembersFragment : Fragment() {
 	val bundle = Bundle()
 	private lateinit var binding: FragmentMembersBinding
@@ -30,12 +32,13 @@ class MembersFragment : Fragment() {
 	override fun onCreateView(inflater: LayoutInflater,
 							  container: ViewGroup?,
 							  savedInstanceState: Bundle?
-	): View? {
+	): View {
 		binding = DataBindingUtil.inflate(inflater,
 			R.layout.fragment_members,container,false)
 		
-		val application = Application()
+		val application = Application() // for using app-context
 		
+		// get data from previous View
 		selectedParty = arguments?.getString("selectedParty") ?: ""
 		
 		vmMembersFactory = MembersVMFactory(application, selectedParty)
@@ -49,30 +52,31 @@ class MembersFragment : Fragment() {
 		return binding.root
 	}
 	
-	fun createMembersList(membersList: List<PartyMember>) {
+	/**
+	 * Fills RecyclerView-list with data
+	 */
+	private fun createMembersList(membersList: List<PartyMember>) {
 		val recyclerView: RecyclerView = binding.recyclerViewSelectedPartyMembers
 		recyclerView.layoutManager = LinearLayoutManager(requireContext())
-		
 		val membersNames = membersList.map { it.first + ' ' + it.last }
-		
-		Log.d("LOG", "Members qty: = ${membersNames.size}")
 		
 		recyclerView.adapter = MembersAdapter(membersNames, object:
 			MemberOnClickListener {
-			override fun onClick(member: String) {
+			override fun onClick(memberName: String) {
+				
+				// get data for transit to the next View
 				val memberPersNumber = membersList.filter {
-					it.first == member.split(' ')[0]
-							&& it.last == member.split(' ')[1]
+					it.first == memberName.split(' ')[0]
+							&& it.last == memberName.split(' ')[1]
 				}[0].personNumber
 				
 				val memberParty = membersList.filter {
-					it.first == member.split(' ')[0]
-							&& it.last == member.split(' ')[1]
+					it.first == memberName.split(' ')[0]
+							&& it.last == memberName.split(' ')[1]
 				}[0].party
 				
-				Log.d("LOG", "Member clicked: $member")
-				
-				bundle.putString("selectedMember", member)
+				// put data for transit to the next View
+				bundle.putString("selectedMember", memberName)
 				bundle.putString("selectedParty", memberParty)
 				bundle.putInt("memberPersNumber", memberPersNumber)
 				view?.findNavController()

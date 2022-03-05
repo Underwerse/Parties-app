@@ -3,10 +3,8 @@ package fi.example.parties.screens
 import android.app.Application
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.media.ImageReader
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +12,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import coil.ImageLoader
 import coil.load
@@ -29,11 +26,13 @@ import fi.example.parties.room.entities.ImageDao
 import fi.example.parties.room.entities.PartyMember
 import fi.example.parties.viewmodels.MemberInfoVM
 import fi.example.parties.viewmodels.MemberInfoVMFactory
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+/**
+ * Fragment for parliament member's data screen
+ */
 class MemberInfoFragment: Fragment() {
-    val bundle = Bundle()
+    private val bundle = Bundle()
     private lateinit var binding: FragmentMemberInfoBinding
     private lateinit var vmMemberInfo: MemberInfoVM
     private lateinit var vmMemberInfoFactory: MemberInfoVMFactory
@@ -43,15 +42,17 @@ class MemberInfoFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater,
 			R.layout.fragment_member_info,container,false)
     
-        val application = Application()
+        val application = Application() // for using the app-context inside this Fragment
         
+        // get data from previous View
         val selectedMemberParty = arguments?.getString("selectedParty") ?: ""
         val selectedMemberPersNumber = arguments?.getInt("memberPersNumber") ?: 0
     
+        // put data for transit to back View when Back-btn clicked
         bundle.putString("selectedParty", selectedMemberParty)
         
         vmMemberInfoFactory = MemberInfoVMFactory(application, selectedMemberPersNumber)
@@ -60,6 +61,8 @@ class MemberInfoFragment: Fragment() {
         imageDao = DB.getInstance(requireContext()).imageDao
         imagesRepository = ImagesRepository(imageDao)
         binding.memberInfoVM = vmMemberInfo
+        
+        // set textview scrolling ability (when a lot of text inside)
         binding.tvNote.movementMethod = ScrollingMovementMethod()
         
         vmMemberInfo.memberByPersNumber.observe(viewLifecycleOwner) {
@@ -67,8 +70,11 @@ class MemberInfoFragment: Fragment() {
         }
         
         vmMemberInfo.memberRating.observe(viewLifecycleOwner) {
-            binding.tvMemberRating.text = "Current rating: ${it?.toString() ?: "none"}/3"
+            binding.tvMemberRating.text = "Current rating: ${it?.toString() ?: "0"}/3"
         }
+    
+        // set textview scrolling ability (when a lot of text inside)
+        binding.tvNote.movementMethod = ScrollingMovementMethod()
     
         vmMemberInfo.memberRatingObj.observe(viewLifecycleOwner) {
             binding.tvNote.text = it?.note ?: ""
@@ -92,32 +98,42 @@ class MemberInfoFragment: Fragment() {
         return binding.root
     }
     
+    /**
+     * Updates TextView-fields, sets member's image
+     */
     private fun updateMemberData(member: PartyMember) {
         val imgResName = "@drawable/" + member.party
         val imageID = resources.getIdentifier(imgResName, "drawable", activity?.getPackageName())
         binding.imgParty.setImageResource(imageID)
         binding.tvMemberName.text = member.last + ", " + member.first + ", " + member.bornYear
-        // TODO #2 Remove birth year tails
-//        binding.tvMemberBirthYear.text = "Borned in " + member.bornYear.toString()
         binding.tvDistrict.text = "District: " + member.constituency
         binding.tvMemberTwitter.text =
             "Twitter: " + if (member.twitter != "") member.twitter else "none"
-        GlobalScope.launch {
+        setImage(member)
+    }
+    
+    /**
+     * Sets image to ImageView
+     */
+    private fun setImage(member: PartyMember) {
+        lifecycleScope.launch {
             insertImage(member.personNumber, getBitmap(member.picture))
             binding.imgMember.load(getBitmap(member.picture))
         }
     }
     
+    /**
+     * Inserts image into DB
+     */
     private fun insertImage(persNumber: Int, image: Bitmap) {
-        GlobalScope.launch {
-            imagesRepository.setImage(
-                Image(
-                persNumber, image
-            )
-            )
+        lifecycleScope.launch {
+            imagesRepository.setImage(Image(persNumber, image))
         }
     }
     
+    /**
+     * Returns image from network by API
+     */
     private suspend fun getBitmap(imageUrl: String): Bitmap {
         val BASE_URI = "https://avoindata.eduskunta.fi/"
         val loading = ImageLoader(requireContext())

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Parties</string>
     <string name="name">Parties info</string>
+    <string name="selectAnyMember">Select any party\'s member you want to get details from:</string>
+    <string name="selectAnyParty">Click on the party\'s image you wish to get members from (fill DB if list is empty):</string>
     <string name="about">This is the test Android-app.
 \n\nHere it\'s been implemented a navigation.
 \n\nMoreover, here you can go through several Fragments.
@@ -18,6 +20,8 @@
     <string name="menu_item_about">About app</string>
     <string name="menu_item_db">Fill DB with data</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fillDb">Fill DB or clean it here</string>
+    <string name="cleanDb">Clean db</string>
 
     <!-- contentDescription strings for rating icons -->
     <string name="quality_1">Member Rating 1</string>
@@ -25,6 +29,18 @@
     <string name="quality_3">Member Rating 3</string>
 
     <string name="what_rating">Give your rate</string>
-    <string name="note_rating">Write your note here</string>
+    <string name="note_hint">Write your note here</string>
+
+    <string name="logo_party">logo of party</string>
+    <string name="image_member">image of member</string>
+    <string name="image_title">title image</string>
+
+    <!--Buttons-->
+    <string name="fillFromFileBtn">fill from file</string>
+    <string name="fillFromNetBtn">fill from api</string>
+    <string name="startBtn">start</string>
+    <string name="backBtn">back</string>
+    <string name="homeBtn">home</string>
+    <string name="saveNoteBtn">save note</string>
 
 </resources>

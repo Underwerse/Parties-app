@@ -1,13 +1,15 @@
 package fi.example.parties.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import fi.example.parties.data.MembersRepository
 import fi.example.parties.room.DB
 import fi.example.parties.room.entities.PartyMember
-import fi.example.parties.data.MembersRepository
 
+/**
+ * ViewModel for Members View
+ */
 class MembersVM(application: Application,
                 selectedParty: String
 ) : AndroidViewModel(application) {
@@ -20,7 +22,7 @@ class MembersVM(application: Application,
     init {
         val partyMemberDao = DB.getInstance(application).partyMemberDao
         membersRepository = MembersRepository(partyMemberDao)
-        _getAllMembersByParty = membersRepository.getPartyMembersByParty(selectedParty)
-        Log.d("LOG", "MembersListVM _getAllMembersByParty received")
+        // get list of parliament members depending on the selected party
+        _getAllMembersByParty = membersRepository.getMembersByParty(selectedParty)
     }
 }

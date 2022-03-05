@@ -1,12 +1,14 @@
 package fi.example.parties.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import fi.example.parties.room.DB
 import fi.example.parties.data.MembersRepository
+import fi.example.parties.room.DB
 
+/**
+ * ViewModel for Parties View
+ */
 class PartiesVM(application: Application
 ) : AndroidViewModel(application) {
     private val _allPartiesFromDb: LiveData<List<String>>
@@ -15,15 +17,9 @@ class PartiesVM(application: Application
         get() = _allPartiesFromDb
 
     init {
-        Log.i("LOG", "PartiesVM created")
         val partyMemberDao = DB.getInstance(application).partyMemberDao
         membersRepository = MembersRepository(partyMemberDao)
+        // get all parties list from the repository
         _allPartiesFromDb = membersRepository.allPartiesFromDb
-        Log.d("LOG", "PartiesVM: _allPartiesFromDb received")
-    }
-    
-    override fun onCleared() {
-        super.onCleared()
-        Log.i("LOG", "PartiesVM destroyed")
     }
 }

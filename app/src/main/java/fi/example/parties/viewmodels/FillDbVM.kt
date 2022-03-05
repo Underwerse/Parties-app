@@ -10,11 +10,15 @@ import fi.example.parties.retrofit.MembersApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+// Status for future use
 enum class MembersApiStatus { LOADING, ERROR, DONE }
 
+/**
+ * ViewModel for FillDb View
+ */
 class FillDbVM(application: Application) : AndroidViewModel(application) {
     
-    private val _membersFromFile: List<MemberOfParliament>
+    private val _membersFromFile = ParliamentMembersData.members // get data from local file
     private val _membersFromNetwork = MutableLiveData<List<Member>>()
     private val _status = MutableLiveData<MembersApiStatus>()
     
@@ -24,26 +28,19 @@ class FillDbVM(application: Application) : AndroidViewModel(application) {
         get() = _membersFromNetwork
     
     init {
-        Log.i("LOG", "FillDbVM created")
-        _membersFromFile = ParliamentMembersData.members
         getMembersFromNetwork()
     }
     
-    override fun onCleared() {
-        super.onCleared()
-        Log.i("LOG", "FillDbVM destroyed")
-    }
-    
+    /**
+     * Retrieve data from network by API
+     */
     private fun getMembersFromNetwork() {
-        Log.d("LOG", "Getting from API start")
-    
         GlobalScope.launch {
             _status.postValue(MembersApiStatus.LOADING)
             
             try {
             	_membersFromNetwork.postValue(MembersApi.RETROFIT_SERVICE_MEMBERS.getMembers())
                 _status.postValue(MembersApiStatus.DONE)
-                Log.d("LOG", "Getting members from API done")
             } catch (e: Exception) {
                 _status.postValue(MembersApiStatus.ERROR)
                 _membersFromNetwork.postValue(ArrayList())

@@ -18,6 +18,11 @@ import fi.example.parties.room.entities.ImageDao
     version = 5,
     exportSchema = false
 )
+
+/**
+ * @TypeConverters-annotation for auto-convert Bitmap to ByteArray and vise versa
+ * while working with members' images and SQLite
+ */
 @TypeConverters(ImageConverter::class)
 abstract class DB: RoomDatabase() {
     abstract val partyMemberDao: PartyMemberDao

@@ -1,17 +1,11 @@
 package fi.example.parties.recyclerviews
 
-import android.content.Context
-import android.content.res.Resources
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.DrawableRes
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import fi.example.parties.MainActivity.Companion.appContext
 import fi.example.parties.R
 
 class PartiesAdapter(private val parties : List<String>, private val onClickListener: PartyOnClickListener):
@@ -39,6 +33,9 @@ class PartiesAdapter(private val parties : List<String>, private val onClickList
 
     override fun getItemCount() = parties.size
     
+    /**
+     * Returns the number-ID of a drawable resource depending on it's name
+     */
     private fun getDrawableResourse(resName: String): Int {
         val drawableResource = when (resName) {
             "kd" -> R.drawable.kd
@@ -55,6 +52,9 @@ class PartiesAdapter(private val parties : List<String>, private val onClickList
         return drawableResource
     }
     
+    /**
+     * Returns the full parliament party's name depending on it's short one
+     */
     private fun getPartyFullName(shortName: String): String {
         val fullName = when (shortName) {
             "kd" -> "Christian Democrat"

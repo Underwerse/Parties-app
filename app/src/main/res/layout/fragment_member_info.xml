@@ -16,7 +16,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:context=".MainActivity">
 
             <TextView
@@ -26,7 +26,6 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:gravity="left"
                 android:text=""
                 android:textSize="@dimen/text_size_middle"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +42,6 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:gravity="left"
                 android:text=""
                 android:textSize="@dimen/text_size_middle"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -60,7 +58,6 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:gravity="left"
                 android:text=""
                 android:textSize="@dimen/text_size_middle"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -77,7 +74,6 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:gravity="left"
                 android:text=""
                 android:textSize="@dimen/text_size_middle"
                 android:visibility="gone"
@@ -95,7 +91,6 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:gravity="left"
                 android:scrollbars="vertical"
                 android:text=""
                 android:textSize="@dimen/text_size_middle"
@@ -128,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Back"
+                android:text="@string/backBtn"
                 app:layout_constraintEnd_toStartOf="@+id/btn_to_main"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -138,24 +133,11 @@
                 android:id="@+id/btn_to_main"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="home"
+                android:text="@string/homeBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/btn_to_back"
                 app:layout_constraintTop_toTopOf="@+id/btn_to_back" />
-
-            <Button
-                android:id="@+id/btn_random"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="next random"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.95"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_to_main"
-                app:layout_constraintVertical_bias="0.032" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/group"
@@ -173,7 +155,8 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/tv_note"
                 app:layout_constraintTop_toBottomOf="@+id/img_member"
-                app:srcCompat="@drawable/party" />
+                app:srcCompat="@drawable/party"
+                android:contentDescription="@string/logo_party" />
 
             <ImageView
                 android:id="@+id/img_member"
@@ -183,7 +166,8 @@
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_member_name" />
+                app:layout_constraintTop_toTopOf="@+id/tv_member_name"
+                android:contentDescription="@string/image_member" />
 
             <TextView
                 android:id="@+id/tv_rating"
@@ -241,7 +225,6 @@
                 android:layout_marginTop="16dp"
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="@string/note_rating"
                 android:inputType="textMultiLine"
                 android:textSize="@dimen/text_size_small"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -254,7 +237,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:text="Save note"
+                android:text="@string/saveNoteBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/et_note" />
 
