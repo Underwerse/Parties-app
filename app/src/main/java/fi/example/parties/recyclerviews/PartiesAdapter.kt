@@ -8,6 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fi.example.parties.R
 
+/**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
+ * Adapter for list of parties
+ */
 class PartiesAdapter(private val parties : List<String>, private val onClickListener: PartyOnClickListener):
     RecyclerView.Adapter<PartiesAdapter.PartiesViewHolder>() {
     inner class PartiesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

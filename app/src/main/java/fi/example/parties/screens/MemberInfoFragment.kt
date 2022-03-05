@@ -29,6 +29,7 @@ import fi.example.parties.viewmodels.MemberInfoVMFactory
 import kotlinx.coroutines.launch
 
 /**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
  * Fragment for parliament member's data screen
  */
 class MemberInfoFragment: Fragment() {

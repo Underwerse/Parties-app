@@ -8,6 +8,7 @@ import fi.example.parties.room.DB
 import fi.example.parties.room.entities.PartyMember
 
 /**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
  * ViewModel for Members View
  */
 class MembersVM(application: Application,

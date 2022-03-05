@@ -3,6 +3,10 @@ package fi.example.parties.room.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
+ * Entity of PartyMember-object for Room-DB
+ */
 @Entity(tableName = "party_members_table")
 data class PartyMember (
     @PrimaryKey

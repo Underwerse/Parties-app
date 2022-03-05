@@ -7,6 +7,7 @@ import fi.example.parties.data.MembersRepository
 import fi.example.parties.room.DB
 
 /**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
  * ViewModel for Parties View
  */
 class PartiesVM(application: Application

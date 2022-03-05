@@ -1,5 +1,9 @@
 package fi.example.parties
 
+/**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
+ * Default class with locally-storaged data
+ */
 data class MemberOfParliament (
     val personNumber: Int,
     val seatNumber: Int = 0,

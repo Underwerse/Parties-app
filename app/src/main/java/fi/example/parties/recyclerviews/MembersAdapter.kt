@@ -7,6 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fi.example.parties.R
 
+/**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
+ * Adapter for list of members by chosen party
+ */
 class MembersAdapter(private val members : List<String>, private val onClickListener: MemberOnClickListener):
 	RecyclerView.Adapter<MembersAdapter.MembersViewHolder>() {
 	inner class MembersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

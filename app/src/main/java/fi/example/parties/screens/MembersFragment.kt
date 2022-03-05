@@ -20,6 +20,7 @@ import fi.example.parties.viewmodels.MembersVMFactory
 import fi.example.parties.viewmodels.MembersVM
 
 /**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
  * Fragment for selected by party's name members list's data screen
  */
 class MembersFragment : Fragment() {

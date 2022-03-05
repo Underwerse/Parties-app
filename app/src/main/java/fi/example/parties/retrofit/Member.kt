@@ -3,6 +3,10 @@ package fi.example.parties.retrofit
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
+/**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
+ * Class for creating Member-object for API purposes
+ */
 @Parcelize
 data class Member(
 	val personNumber: Int,

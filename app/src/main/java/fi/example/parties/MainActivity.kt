@@ -10,7 +10,8 @@ import androidx.navigation.ui.NavigationUI
 import fi.example.parties.databinding.ActivityMainBinding
 
 /**
- * The app's Main-activity
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
+ * The app's Main-activity class
  */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

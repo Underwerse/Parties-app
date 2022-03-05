@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import fi.example.parties.R
 
 /**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
  * Fragment for 'About'-screen
  */
 class AboutFragment : Fragment() {

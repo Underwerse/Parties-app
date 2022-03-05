@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 enum class MembersApiStatus { LOADING, ERROR, DONE }
 
 /**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
  * ViewModel for FillDb View
  */
 class FillDbVM(application: Application) : AndroidViewModel(application) {

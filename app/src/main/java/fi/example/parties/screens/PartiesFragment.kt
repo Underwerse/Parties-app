@@ -17,6 +17,7 @@ import fi.example.parties.recyclerviews.PartyOnClickListener
 import fi.example.parties.viewmodels.PartiesVM
 
 /**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
  * Fragment for selected by party's name members list's data screen
  */
 class PartiesFragment : Fragment() {

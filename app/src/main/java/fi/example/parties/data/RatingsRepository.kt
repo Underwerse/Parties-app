@@ -4,6 +4,10 @@ import androidx.lifecycle.LiveData
 import fi.example.parties.room.entities.MemberRating
 import fi.example.parties.room.entities.MemberRatingDao
 
+/**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
+ * Repository for Rating-object
+ */
 class RatingsRepository(private val memberRatingDao: MemberRatingDao) {
 
     suspend fun setRating(rating: MemberRating) {

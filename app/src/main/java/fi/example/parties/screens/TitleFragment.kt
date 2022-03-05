@@ -10,6 +10,7 @@ import fi.example.parties.R
 import fi.example.parties.databinding.FragmentTitleBinding
 
 /**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
  * Fragment for app start screen
  */
 class TitleFragment : Fragment() {

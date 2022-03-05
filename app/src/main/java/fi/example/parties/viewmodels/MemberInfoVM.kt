@@ -13,6 +13,7 @@ import fi.example.parties.room.entities.PartyMember
 import kotlinx.coroutines.launch
 
 /**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
  * ViewModel for MemberInfo View
  */
 class MemberInfoVM(application: Application,

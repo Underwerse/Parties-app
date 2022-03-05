@@ -20,6 +20,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 /**
+ * 5.3.2022, Pavel Chernov, opnro. 2110598
  * Fragment for working with the DB: fill with data or clean
  */
 class FillDbFragment : Fragment() {
