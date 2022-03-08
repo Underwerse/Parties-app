@@ -88,7 +88,7 @@ class MemberInfoFragment: Fragment() {
         binding.tvNote.movementMethod = ScrollingMovementMethod()
     
         vmMemberInfo.memberRatingObj.observe(viewLifecycleOwner) {
-            binding.tvNote.text = it?.note ?: ""
+            binding.tvNote.text = it?.note ?: "No notes"
         }
         
         binding.btnSendNote.setOnClickListener {
@@ -120,7 +120,6 @@ class MemberInfoFragment: Fragment() {
         binding.tvDistrict.text = "District: " + member.constituency
         binding.tvMemberTwitter.text =
             "Twitter: " + if (member.twitter != "") member.twitter else "none"
-//        binding.tvMemberTwitter.setMovementMethod(LinkMovementMethod.getInstance())
         setImage(member)
     }
     

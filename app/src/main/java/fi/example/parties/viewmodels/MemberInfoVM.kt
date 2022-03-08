@@ -63,7 +63,7 @@ class MemberInfoVM(application: Application,
      * Updates rating in DB, saving current note
      */
     fun onSetRating(rating: Int) {
-        val currentNote = (memberRatingObj.value)?.note ?: ""
+        val currentNote = (memberRatingObj.value)?.note ?: "No notes"
         val ratingObj = MemberRating(
             personNumber,
             rating,
