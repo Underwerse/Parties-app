@@ -5,11 +5,13 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -117,10 +119,25 @@ class MemberInfoFragment: Fragment() {
      * Sets image to ImageView
      */
     private fun setImage(member: PartyMember) {
+        var image: Bitmap
         lifecycleScope.launch {
-            insertImage(member.personNumber, getBitmap(member.picture))
-            binding.imgMember.load(getBitmap(member.picture))
+            if (isExists(member.personNumber)) {
+                Log.d("LOG", "Image exists")
+                image = imagesRepository.getImage(member.personNumber)
+            } else {
+                Log.d("LOG", "Image DOES NOT exist")
+                image = getBitmap(member.picture)
+                insertImage(member.personNumber, image)
+            }
+            binding.imgMember.load(image)
         }
+    }
+    
+    /**
+     * Checks if image has been added into DB earlier or not
+     */
+    private suspend fun isExists(persNumber: Int): Boolean {
+        return imageDao.isExists(persNumber)
     }
     
     /**
