@@ -1,14 +1,21 @@
 package fi.example.parties.screens
 
 import android.app.Application
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -122,12 +129,13 @@ class MemberInfoFragment: Fragment() {
         var image: Bitmap
         lifecycleScope.launch {
             if (isExists(member.personNumber)) {
-                Log.d("LOG", "Image exists")
                 image = imagesRepository.getImage(member.personNumber)
-            } else {
-                Log.d("LOG", "Image DOES NOT exist")
+            } else if (isNetworkAvailable(requireContext())) {
                 image = getBitmap(member.picture)
                 insertImage(member.personNumber, image)
+            } else {
+                Toast.makeText(requireContext(), "Unable to download image: check your Internet connection", Toast.LENGTH_SHORT).show()
+                image = Bitmap.createBitmap(100, 200, Bitmap.Config.RGB_565)
             }
             binding.imgMember.load(image)
         }
@@ -161,5 +169,15 @@ class MemberInfoFragment: Fragment() {
         
         val result = (loading.execute(request) as SuccessResult).drawable
         return (result as BitmapDrawable).bitmap
+    }
+    
+    /**
+     * Returns Internet-connection checking result
+     */
+    fun isNetworkAvailable(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        var activeNetworkInfo: NetworkInfo? = null
+        activeNetworkInfo = cm.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
     }
 }
