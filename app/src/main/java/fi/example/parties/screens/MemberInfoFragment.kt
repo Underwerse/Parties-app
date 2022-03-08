@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
@@ -119,6 +120,7 @@ class MemberInfoFragment: Fragment() {
         binding.tvDistrict.text = "District: " + member.constituency
         binding.tvMemberTwitter.text =
             "Twitter: " + if (member.twitter != "") member.twitter else "none"
+//        binding.tvMemberTwitter.setMovementMethod(LinkMovementMethod.getInstance())
         setImage(member)
     }
     
