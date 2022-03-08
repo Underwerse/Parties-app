@@ -7,45 +7,66 @@
 
     <fragment
         android:id="@+id/titleFragment"
-        android:name="fi.example.tiistai2501.TitleFragment"
+        android:name="fi.example.parties.screens.TitleFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_title"
         >
         <action
-            android:id="@+id/action_titleFragment_to_selectPartyFragment"
-            app:destination="@id/selectPartyFragment" />
+            android:id="@+id/action_titleFragment_to_partiesFragment"
+            app:destination="@id/PartiesFragment" />
 
     </fragment>
     <fragment
-        android:id="@+id/selectPartyFragment"
-        android:name="fi.example.tiistai2501.SelectPartyFragment"
+        android:id="@+id/PartiesFragment"
+        android:name="fi.example.parties.screens.PartiesFragment"
         android:label="Select your party"
-        tools:layout="@layout/fragment_select_party"
+        tools:layout="@layout/fragment_parties"
         >
         <action
-            android:id="@+id/action_selectPartyFragment_to_partyDetailsFragment"
-            app:destination="@id/partyDetailsFragment" />
+            android:id="@+id/action_partiesFragment_to_membersFragment"
+            app:destination="@id/membersFragment" />
     </fragment>
     <fragment
-        android:id="@+id/partyDetailsFragment"
-        android:name="fi.example.tiistai2501.PartyDetailsFragment"
-        android:label="Selected party's details"
-        tools:layout="@layout/fragment_party_details"
+        android:id="@+id/memberInfoFragment"
+        android:name="fi.example.parties.screens.MemberInfoFragment"
+        android:label="Selected members's details"
+        tools:layout="@layout/fragment_member_info"
         >
+        <argument
+            android:name="selectedMemberParty"
+            android:defaultValue="" />
         <action
-            android:id="@+id/action_partyDetailsFragment_to_titleFragment"
-            app:destination="@id/titleFragment"
-            app:popUpTo="@id/titleFragment"
+            android:id="@+id/action_memberInfoFragment_to_membersFragment"
+            app:destination="@id/membersFragment"
+            app:popUpTo="@id/membersFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_partyDetailsFragment_to_selectPartyFragment"
-            app:destination="@id/selectPartyFragment"
-            app:popUpTo="@id/selectPartyFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_memberInfoFragment_to_titleFragment"
+            app:destination="@id/titleFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="fi.example.tiistai2501.AboutFragment"
+        android:name="fi.example.parties.screens.AboutFragment"
         android:label="About app"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/dbHandleFragment"
+        android:name="fi.example.parties.screens.FillDbFragment"
+        android:label="SQLite DB handler"
+        tools:layout="@layout/fragment_fill_db">
+        <action
+            android:id="@+id/action_dbHandleFragment_to_partiesFragment"
+            app:destination="@id/PartiesFragment"
+            app:popUpTo="@id/titleFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/membersFragment"
+        android:name="fi.example.parties.screens.MembersFragment"
+        android:label="Select party's member"
+        tools:layout="@layout/fragment_members" >
+        <action
+            android:id="@+id/action_membersFragment_to_memberInfoFragment"
+            app:destination="@id/memberInfoFragment" />
+    </fragment>
 </navigation>
